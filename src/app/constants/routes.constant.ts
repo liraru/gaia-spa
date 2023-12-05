@@ -6,5 +6,6 @@ export const APP_ROUTES = {
   BOOKS: `libros`,
   AUTHORS: `autores`,
   SAGAS: `sagas`,
-  GENRES: `generos`
+  GENRES: `generos`,
+  VESTA: `vesta`
 };

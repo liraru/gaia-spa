@@ -19,6 +19,10 @@ const routes: Routes = [
     path: APP_ROUTES.MINERVA,
     loadChildren: () => import(`./modules/sections/minerva/minerva.module`).then((m) => m.MinervaModule)
   },
+  {
+    path: APP_ROUTES.VESTA,
+    loadChildren: () => import(`./modules/sections/vesta/vesta.module`).then((m) => m.VestaModule)
+  },
   { path: '**', redirectTo: APP_ROUTES.DASHBOARD, pathMatch: 'full' }
 ];
 
