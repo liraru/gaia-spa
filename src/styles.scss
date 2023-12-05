@@ -1,20 +1,4 @@
-// *** COLOURS *** //
-$background-color: #13121c;
-$card-background-color: rgba(34, 34, 51, 0.5);
-$primary-font-color: white;
-$secondary-font-color: #717a95;
-$tertiary-font-color: #dedede;
-$primary-color: #56ffff;
-$secondary-color: #947fff;
-$tertiary-color: #47b7ff;
-
-// *** BREAKDOWN POINTS ***//
-$breakpoint-tablet: 758px;
-$breakpoint-mobile: 375px;
-
-// *** MENU WIDTH *** //
-$menu-width-wide: 225px;
-$menu-width-collapsed: 80px;
+@import 'variables';
 
 @font-face {
   font-family: SofiaSansCondensed;

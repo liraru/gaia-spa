@@ -1,0 +1,31 @@
+@import 'variables';
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 18px;
+  font-style: normal;
+  color: $secondary-font-color;
+  text-decoration: none;
+
+  &:hover > *,
+  &.active > * {
+    color: $primary-font-color;
+    filter: drop-shadow(0px 0px 8px $primary-color);
+  }
+
+  fa-icon {
+    padding: 0px 17px;
+    width: 35px;
+  }
+
+  div {
+    width: $menu-width-wide;
+
+    @media (max-width: $breakpoint-tablet) {
+      display: none;
+    }
+  }
+}
