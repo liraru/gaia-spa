@@ -1,1 +1,42 @@
+@import 'src/assets/variables.scss';
 
+@font-face {
+  font-family: SofiaSansCondensed;
+  font-size: 16px;
+  src: url('./assets/fonts/sofiasanscondensed.woff2') format('woff2'), url('./assets/fonts/sofiasanscondensed.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: $background-color;
+  color: $primary-font-color;
+  font-family: SofiaSansCondensed;
+
+  * > ::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  * > ::-webkit-scrollbar-track {
+    box-shadow: $background-color;
+  }
+
+  * > ::-webkit-scrollbar-thumb {
+    background-color: $secondary-font-color;
+    outline: 1px solid $secondary-font-color;
+    border-radius: 10px;
+  }
+}
+
+.card {
+  background-color: $card-background-color;
+}
+
+.central-panel {
+  padding: 0px 25px 15px 0px;
+  min-width: calc(100vw - 260px);
+  @media (max-width: $breakpoint-tablet) {
+    min-width: calc(100vw - 114px);
+    margin-left: 12px;
+  }
+}

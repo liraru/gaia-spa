@@ -1,11 +1,11 @@
 export const APP_ROUTES = {
-  DASHBOARD: ``,
-  MANAGEMENT: `management`,
-  CIBELES: `cibeles`,
-  MINERVA: `minerva`,
-  BOOKS: `libros`,
   AUTHORS: `autores`,
-  SAGAS: `sagas`,
+  BOOKS: `libros`,
+  CIBELES: `cibeles`,
+  DASHBOARD: ``,
   GENRES: `generos`,
+  MANAGEMENT: `management`,
+  MINERVA: `minerva`,
+  SAGAS: `sagas`,
   VESTA: `vesta`
 };
