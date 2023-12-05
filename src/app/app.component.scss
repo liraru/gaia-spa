@@ -17,7 +17,7 @@ app-navbar {
   display: flex;
 }
 
-app-main-menu {
+app-menu {
   width: $menu-width-wide;
   @media (max-width: $breakpoint-tablet) {
     width: $menu-width-collapsed;
