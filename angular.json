@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "kaede-spa": {
+    "gaia-spa": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/kaede-spa",
+            "outputPath": "dist/gaia-spa",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -74,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "kaede-spa:build:production"
+              "buildTarget": "gaia-spa:build:production"
             },
             "development": {
-              "buildTarget": "kaede-spa:build:development"
+              "buildTarget": "gaia-spa:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -85,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "kaede-spa:build"
+            "buildTarget": "gaia-spa:build"
           }
         },
         "test": {
