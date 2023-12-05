@@ -1,4 +1,5 @@
 import { IMenuItem } from '../interfaces/menu-item.interface';
+import { IMAGE_ROUTES } from './image-routes.constant';
 import { APP_ROUTES } from './routes.constant';
 
 export const OWN_ROUTES: IMenuItem[] = [
@@ -8,15 +9,18 @@ export const OWN_ROUTES: IMenuItem[] = [
   },
   {
     buttonName: `Administración`,
-    route: APP_ROUTES.MANAGEMENT
+    route: APP_ROUTES.MANAGEMENT,
+    icon: IMAGE_ROUTES.MANAGEMENT_LOGO
   },
   {
     buttonName: `Cibeles`,
-    route: APP_ROUTES.CIBELES
+    route: APP_ROUTES.CIBELES,
+    icon: IMAGE_ROUTES.CIBELES_LOGO
   },
   {
     buttonName: `Minerva`,
     route: APP_ROUTES.MINERVA,
+    icon: IMAGE_ROUTES.MINERVA_LOGO,
     innerRoutes: [
       {
         buttonName: `Libros`,
