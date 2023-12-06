@@ -1,2 +1,6 @@
-<img [src]="icon" alt="">
-<h2>GAIA</h2>
+<div class="navbar-container">
+  <div [routerLink]="link" routerLinkActive="router-link-active">
+    <img [src]="icon" alt="{{ icon }}" />
+  </div>
+  <h1 [routerLink]="link" routerLinkActive="router-link-active">GAIA</h1>
+</div>

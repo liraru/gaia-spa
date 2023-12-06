@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IMAGE_ROUTES } from '../../../../../constants/image-routes.constant';
+import { APP_ROUTES } from '../../../../../constants/routes.constant';
 
 @Component({
   selector: 'app-navbar',
@@ -8,4 +9,5 @@ import { IMAGE_ROUTES } from '../../../../../constants/image-routes.constant';
 })
 export class NavbarComponent {
   public icon: string = IMAGE_ROUTES.GAIA_LOGO;
+  public link: string = APP_ROUTES.DASHBOARD;
 }
