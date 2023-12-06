@@ -1,17 +1,22 @@
 <div class="menu-container">
   <div class="first-section">
-    <div *ngFor="let item of menu; let isLast = last">
-      <app-menu-item
-        *ngIf="item.code !== 'DASHBOARD' && !isLast"
-        [item]="item"
-        [isActive]="current === item.route"
-        (onItemChange)="onItemChange(item)"
-      >
-      </app-menu-item>
-    </div>
+    @for(item of menu; track item.code; let isLast = $last) {
+      @if(item.code !== 'DASHBOARD' && !isLast) {
+        <app-menu-item
+          [item]="item"
+          [isActive]="current === item.route"
+          (onItemChange)="onItemChange(item)"
+        >
+        </app-menu-item>
+      }
+    }
   </div>
 
   <div class="last-item">
-    <app-menu-item [item]="lastItem" [isActive]="current === lastItem.route" (onItemChange)="onItemChange(lastItem)"> </app-menu-item>
+    <app-menu-item
+      [item]="lastItem"
+      [isActive]="current === lastItem.route"
+      (onItemChange)="onItemChange(lastItem)">
+    </app-menu-item>
   </div>
 </div>
