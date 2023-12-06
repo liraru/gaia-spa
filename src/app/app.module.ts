@@ -7,11 +7,25 @@ import { FooterModule } from './modules/layout/footer/footer.module';
 import { MenuModule } from './modules/layout/menu/menu.module';
 import { NavbarModule } from './modules/layout/navbar/navbar.module';
 import { RouterModule } from '@angular/router';
+import { NavigationStatusService } from './services/navigation-status.service';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, RouterModule.forRoot([]), AppRoutingModule, FooterModule, MenuModule, NavbarModule],
-  providers: [provideClientHydration()],
+  imports: [
+    // * ANGULAR * //
+    BrowserModule,
+    RouterModule,
+    AppRoutingModule,
+    // * LAYOUT * //
+    FooterModule,
+    MenuModule,
+    NavbarModule,
+    MenuModule
+  ],
+  providers: [
+    provideClientHydration(),
+    NavigationStatusService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

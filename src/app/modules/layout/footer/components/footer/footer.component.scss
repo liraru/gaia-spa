@@ -1,0 +1,15 @@
+p {
+  display: flex;
+  flex-direction: row-reverse;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 20px;
+}
+.footer-container {
+  display: flex;
+  align-content: center;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 82%;
+}

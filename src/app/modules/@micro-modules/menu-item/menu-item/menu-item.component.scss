@@ -1,13 +1,5 @@
 @import 'variables';
 
-.menu-container {
-  height: calc(100vh - 140px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
 .menu-item {
   height: 50px;
   display: flex;
@@ -17,7 +9,10 @@
   font-style: normal;
   color: $secondary-font-color;
   text-decoration: none;
-  margin-left: 20px;
+
+  img {
+    max-height: 30px;
+  }
 
   &:hover > *,
   &.active > * {
@@ -32,6 +27,7 @@
 
   div {
     width: $menu-width-wide;
+    margin-left: 15px;
 
     @media (max-width: $breakpoint-tablet) {
       display: none;

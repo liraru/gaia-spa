@@ -7,6 +7,15 @@
   margin-left: 20px;
 }
 
+.current-page {
+  display: flex;
+  width: calc(100vw - 180px);
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  letter-spacing: 5px;
+}
+
 img {
   max-height: 50px;
   cursor: pointer;

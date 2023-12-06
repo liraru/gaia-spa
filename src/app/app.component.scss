@@ -19,7 +19,9 @@ app-navbar {
 
 app-menu {
   width: $menu-width-wide;
+  padding-left: 25px;
   @media (max-width: $breakpoint-tablet) {
     width: $menu-width-collapsed;
+    padding-left: 15px;
   }
 }
