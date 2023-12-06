@@ -2,7 +2,7 @@ import { IMenuItem } from '../interfaces/menu-item.interface';
 import { IMAGE_ROUTES } from './image-routes.constant';
 import { APP_ROUTES } from './routes.constant';
 
-export const OWN_ROUTES: IMenuItem[] = [
+export const MENU: IMenuItem[] = [
   {
     buttonName: `Dashboard`,
     route: APP_ROUTES.DASHBOARD

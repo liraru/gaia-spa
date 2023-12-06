@@ -10,7 +10,14 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, RouterModule.forRoot([]), AppRoutingModule, FooterModule, MenuModule, NavbarModule],
+  imports: [
+    BrowserModule,
+    RouterModule,
+    AppRoutingModule,
+    FooterModule,
+    MenuModule,
+    NavbarModule
+  ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent]
 })
