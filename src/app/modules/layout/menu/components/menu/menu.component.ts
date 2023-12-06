@@ -14,6 +14,7 @@ export class MenuComponent {
   }
 
   public menu: IMenuItem[] = MENU;
+  public lastItem: IMenuItem = MENU[MENU.length - 1];
   public current: string = ``;
 
   public onItemChange(item: IMenuItem) {

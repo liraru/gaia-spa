@@ -3,7 +3,6 @@
   [ngClass]="{ active: isActive }"
   (click)="setRoute(item)"
   [routerLink]="[item.route]"
-  *ngIf="item.code !== 'DASHBOARD'"
 >
   <img [src]="item.icon" />
   <div>{{ item.buttonName }}</div>

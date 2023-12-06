@@ -9,12 +9,6 @@ export const MENU: IMenuItem[] = [
     route: APP_ROUTES.DASHBOARD
   },
   {
-    code: `MAINTENANCE`,
-    buttonName: `Administración`,
-    route: APP_ROUTES.MANAGEMENT,
-    icon: IMAGE_ROUTES.MANAGEMENT_LOGO
-  },
-  {
     code: `CIBELES`,
     buttonName: `Cibeles`,
     route: APP_ROUTES.CIBELES,
@@ -47,5 +41,11 @@ export const MENU: IMenuItem[] = [
         route: `${APP_ROUTES.MINERVA}/${APP_ROUTES.GENRES}`
       }
     ]
+  },
+  {
+    code: `MAINTENANCE`,
+    buttonName: `Administración`,
+    route: APP_ROUTES.MANAGEMENT,
+    icon: IMAGE_ROUTES.MANAGEMENT_LOGO
   }
 ];

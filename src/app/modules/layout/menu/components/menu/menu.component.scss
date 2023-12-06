@@ -1,5 +1,13 @@
 @import 'variables';
 
+.menu-container {
+  height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .menu-item {
   height: 50px;
   display: flex;
