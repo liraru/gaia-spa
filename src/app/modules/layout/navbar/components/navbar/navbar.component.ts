@@ -19,7 +19,7 @@ export class NavbarComponent implements OnDestroy {
   constructor(private readonly _navigationStatusService: NavigationStatusService) {
     this._pageNameSubs = this._navigationStatusService
       .getActiveMenuItem()
-      .subscribe((item: IMenuItem) => (this.currentPageName = item.buttonName));
+      .subscribe((item: IMenuItem) => (this.currentPageName = item.buttonName.toLocaleUpperCase()));
   }
 
   ngOnDestroy(): void {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MENU } from '../../../../../constants/menu.constant';
 import { IMenuItem } from '../../../../../interfaces/menu-item.interface';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu',

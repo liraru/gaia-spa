@@ -17,7 +17,6 @@ export class MenuItemComponent {
 
   constructor(private readonly _navigationStatusService: NavigationStatusService) {
     this.item = MENU[0];
-    this._navigationStatusService.getActiveMenuItem().subscribe((item: IMenuItem) => (this.item = item));
   }
 
   public setRoute(item: IMenuItem) {
