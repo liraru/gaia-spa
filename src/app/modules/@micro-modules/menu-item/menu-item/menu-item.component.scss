@@ -9,7 +9,10 @@
   font-style: normal;
   color: $secondary-font-color;
   text-decoration: none;
-  margin-left: 20px;
+
+  img {
+    max-height: 30px;
+  }
 
   &:hover > *,
   &.active > * {
@@ -24,6 +27,7 @@
 
   div {
     width: $menu-width-wide;
+    margin-left: 15px;
 
     @media (max-width: $breakpoint-tablet) {
       display: none;
