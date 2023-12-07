@@ -43,6 +43,12 @@ export const MENU: IMenuItem[] = [
     ]
   },
   {
+    code: `VESTA`,
+    buttonName: `Vesta`,
+    route: APP_ROUTES.VESTA,
+    icon: IMAGE_ROUTES.VESTA_LOGO
+  },
+  {
     code: `MAINTENANCE`,
     buttonName: `Administración`,
     route: APP_ROUTES.MANAGEMENT,
