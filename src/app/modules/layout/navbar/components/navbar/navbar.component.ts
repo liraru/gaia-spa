@@ -15,6 +15,7 @@ export class NavbarComponent implements OnDestroy {
   public icon: string = IMAGE_ROUTES.GAIA_LOGO;
   public link: string = APP_ROUTES.DASHBOARD;
   public currentPageName: string = ``;
+  public buttonText :string = `LOG_IN`;
 
   constructor(private readonly _navigationStatusService: NavigationStatusService) {
     this._pageNameSubs = this._navigationStatusService

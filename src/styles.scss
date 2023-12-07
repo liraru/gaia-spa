@@ -28,6 +28,19 @@ body {
   }
 }
 
+button {
+  font-family: SofiaSansCondensed;
+  font-size: 16px;
+  background: transparent;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border-color: white;
+  border-width: 1px;
+  cursor: pointer;
+
+}
+
 .card {
   background-color: $card-background-color;
 }
