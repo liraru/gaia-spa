@@ -4,6 +4,8 @@ import { IMAGE_ROUTES } from '../../../../../constants/image-routes.constant';
 import { APP_ROUTES } from '../../../../../constants/routes.constant';
 import { IMenuItem } from '../../../../../interfaces/menu-item.interface';
 import { NavigationStatusService } from '../../../../../services/navigation-status.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginModalComponent } from '../login-modal/login-modal.component';
 
 @Component({
   selector: 'app-navbar',
@@ -15,12 +17,20 @@ export class NavbarComponent implements OnDestroy {
   public icon: string = IMAGE_ROUTES.GAIA_LOGO;
   public link: string = APP_ROUTES.DASHBOARD;
   public currentPageName: string = ``;
-  public buttonText :string = `LOG_IN`;
+  public buttonText: string = `LOG_IN`;
 
-  constructor(private readonly _navigationStatusService: NavigationStatusService) {
+  constructor(private readonly _navigationStatusService: NavigationStatusService, public dialog: MatDialog) {
     this._pageNameSubs = this._navigationStatusService
       .getActiveMenuItem()
       .subscribe((item: IMenuItem) => (this.currentPageName = item.buttonName.toLocaleUpperCase()));
+  }
+
+  public openLogin() {
+    const dialogRef = this.dialog.open(LoginModalComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   ngOnDestroy(): void {
