@@ -1,9 +1,14 @@
 <div class="navbar-container">
-  <div [routerLink]="link" routerLinkActive="router-link-active">
-    <img [src]="icon" alt="{{ icon }}" />
+  <div class="logo-container">
+    <div [routerLink]="link" routerLinkActive="router-link-active">
+      <img [src]="icon" alt="{{ icon }}" />
+    </div>
+    <h1 [routerLink]="link" routerLinkActive="router-link-active">GAIA</h1>
   </div>
-  <h1 [routerLink]="link" routerLinkActive="router-link-active">GAIA</h1>
   <div class="current-page" *ngIf="currentPageName !== 'DASHBOARD'">
     <h3>{{ currentPageName }}</h3>
+  </div>
+  <div class="user-area">
+    <button>{{ buttonText | translate }}</button>
   </div>
 </div>
