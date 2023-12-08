@@ -1,11 +1,13 @@
 @import 'variables';
 
 @font-face {
-  font-family: SofiaSansCondensed;
-  font-size: 16px;
+  font-family: SofiaSans;
   src: url('./assets/fonts/sofiasanscondensed.woff2') format('woff2'), url('./assets/fonts/sofiasanscondensed.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+}
+
+* {
+  font-family: SofiaSans !important;
+  font-size: 16px;
 }
 
 body {
@@ -29,7 +31,6 @@ body {
 }
 
 button {
-  font-family: SofiaSansCondensed;
   font-size: 16px;
   background: transparent;
   color: white;
@@ -38,7 +39,6 @@ button {
   border-color: white;
   border-width: 1px;
   cursor: pointer;
-
 }
 
 .card {
@@ -54,5 +54,11 @@ button {
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
