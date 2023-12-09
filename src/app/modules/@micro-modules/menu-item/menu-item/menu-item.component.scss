@@ -28,6 +28,7 @@
   div {
     width: $menu-width-wide;
     margin-left: 15px;
+    font-size: 115%;
 
     @media (max-width: $breakpoint-tablet) {
       display: none;
