@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-modal',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './login-modal.component.scss'
 })
 export class LoginModalComponent {
-
+  public loginForm: FormGroup = new FormGroup({
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+  });
 }

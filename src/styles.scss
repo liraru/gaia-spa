@@ -1,9 +1,24 @@
+@use '@angular/material' as mat;
+
 @import 'variables';
 
 @font-face {
   font-family: SofiaSans;
   src: url('./assets/fonts/sofiasanscondensed.woff2') format('woff2'), url('./assets/fonts/sofiasanscondensed.woff') format('woff');
 }
+
+@include mat.core();
+$gaia-primary: mat.define-palette($primary-color);
+$gaia-accent: mat.define-palette($secondary-color, A200, A100, A400);
+$gaia-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $gaia-primary,
+      accent: $gaia-accent
+    )
+  )
+);
+@include mat.all-component-themes($gaia-theme);
 
 * {
   font-family: SofiaSans !important;

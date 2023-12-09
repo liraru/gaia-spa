@@ -1,3 +1,5 @@
 {
-  "LOG_IN": "Iniciar sesión"
+  "LOG_IN": "Iniciar sesión",
+  "USERNAME": "Nombre de usuario",
+  "PASSWORD": "Contraseña"
 }

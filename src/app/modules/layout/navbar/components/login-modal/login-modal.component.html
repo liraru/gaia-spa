@@ -1,1 +1,14 @@
-<p>login-modal works!</p>
+<div class="login-container">
+  <form [formGroup]="loginForm">
+    <mat-form-field>
+      <mat-label>{{ 'USERNAME' | translate }}</mat-label>
+      <input matInput formControlName="username" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
+      <input matInput formControlName="password" />
+    </mat-form-field>
+  </form>
+  <button mat-stroked-button color="primary">Primary</button>
+</div>
