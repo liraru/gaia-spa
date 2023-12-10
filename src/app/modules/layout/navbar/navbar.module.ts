@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatButtonModule,
     MatInputModule
   ],
+  providers: [LoginService],
   exports: [NavbarComponent]
 })
 export class NavbarModule {}
