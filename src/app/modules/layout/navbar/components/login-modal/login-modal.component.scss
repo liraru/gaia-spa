@@ -7,3 +7,10 @@ mat-form-field {
   width: 375px;
   padding: 35px;
 }
+
+.button-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
