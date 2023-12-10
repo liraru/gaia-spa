@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
 import { SECRETS } from '../../../../../private/secrets.constant';
 import { ENDPOINTS } from '../../../../constants/endpoints.constant';
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,6 @@ export class LoginService {
   private readonly _api = environment.api;
 
   private _encrypt(password: string): string {
-    const CryptoJS = require('crypto-js');
     return CryptoJS.AES.encrypt(
       password.trim(),
       SECRETS.ENCRYPT_KEY

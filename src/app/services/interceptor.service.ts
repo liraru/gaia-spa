@@ -1,4 +1,10 @@
-import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpHeaders,
+  HttpInterceptor,
+  HttpRequest
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,10 +14,13 @@ import { Observable } from 'rxjs';
 export class InterceptorService implements HttpInterceptor {
   constructor() {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let request = req;
-    const headers: HttpHeaders = req.headers;
-    headers.append('Access-Control-Allow-Origin', '*');
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    const request = req.clone({
+      headers: req.headers.set('Access-Control-Allow-Origin', '*')
+    });
 
     // ! TODO : check token
     /*
@@ -25,7 +34,7 @@ export class InterceptorService implements HttpInterceptor {
      return next.handle(request);
 
     */
-    request = req.clone({ headers: headers });
+
     return next.handle(request);
   }
 }

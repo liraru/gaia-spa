@@ -35,7 +35,7 @@
               "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": ["./node_modules/crypto-js/crypto-js.js"],
             "server": "src/main.server.ts",
             "prerender": true,
             "stylePreprocessorOptions": {

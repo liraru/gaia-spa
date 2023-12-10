@@ -52,7 +52,6 @@
     "**/*.spec.ts": true,
     "e2e": true,
     ".idea": true,
-    "lib": true,
-    "node_modules": true
+    "lib": true
   }
 }
