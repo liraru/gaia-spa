@@ -11,4 +11,8 @@ export class LoginModalComponent {
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
+
+  public login(username: string, password: string) {
+
+  }
 }
