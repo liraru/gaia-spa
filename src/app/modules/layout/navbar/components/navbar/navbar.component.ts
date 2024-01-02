@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IMAGE_ROUTES } from 'app/constants/image-routes.constant';
 import { APP_ROUTES } from 'app/constants/routes.constant';
@@ -14,9 +14,9 @@ import { Subscription } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent implements OnDestroy {
-  private _currentUserSubs: Subscription;
-  private _pageNameSubs: Subscription;
+export class NavbarComponent implements AfterViewInit, OnDestroy {
+  private _currentUserSubs?: Subscription;
+  private _pageNameSubs?: Subscription;
   public buttonText: string = `LOG_IN`;
   public currentPageName: string = ``;
   public icon: string = IMAGE_ROUTES.GAIA_LOGO;
@@ -35,10 +35,17 @@ export class NavbarComponent implements OnDestroy {
         next: (item: IMenuItem) =>
           (this.currentPageName = item.buttonName.toLocaleUpperCase())
       });
+  }
 
-    this._currentUserSubs = this._commonBus
-      .getCurrentUser()
-      .subscribe({ next: (user: IUser) => (this.username = user.username) });
+  ngAfterViewInit(): void {
+    console.log('this._currentUserSubs ngAfterViewInit');
+    this._currentUserSubs = this._commonBus.getCurrentUser().subscribe({
+      next: (user: IUser) => {
+        console.log('_currentUserSubs', user);
+        this.username = user.username;
+        this.isLogged = this.username !== '';
+      }
+    });
   }
 
   public openLogin() {
@@ -51,6 +58,10 @@ export class NavbarComponent implements OnDestroy {
         this.username = result.username;
       }
     });
+  }
+
+  public openUserMenu() {
+    console.log('open menu click');
   }
 
   ngOnDestroy(): void {

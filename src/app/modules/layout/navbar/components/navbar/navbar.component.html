@@ -14,12 +14,12 @@
     <span>{{ currentPageName }}</span>
   </div>
   <div class="user-area">
-    @if(isLogged) {
+    @if(!isLogged) {
     <button mat-raised-button color="primary" (click)="openLogin()">
       {{ 'LOG_IN' | translate }}
     </button>
     } @else {
-    <button mat-icon-button>
+    <button mat-icon-button (click)="openUserMenu()">
       <mat-icon fontIcon="home"></mat-icon>
     </button>
     }
