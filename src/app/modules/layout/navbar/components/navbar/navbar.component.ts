@@ -1,11 +1,13 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { IMAGE_ROUTES } from '../../../../../constants/image-routes.constant';
-import { APP_ROUTES } from '../../../../../constants/routes.constant';
-import { IMenuItem } from '../../../../../interfaces/menu-item.interface';
-import { NavigationStatusService } from '../../../../../services/navigation-status.service';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginModalComponent } from '../login-modal/login-modal.component';
+import { IMAGE_ROUTES } from 'app/constants/image-routes.constant';
+import { APP_ROUTES } from 'app/constants/routes.constant';
+import { IMenuItem } from 'app/interfaces/menu-item.interface';
+import { LoginModalComponent } from 'app/modules/layout/navbar/components/login-modal/login-modal.component';
+import { IUser } from 'app/modules/sections/management/interfaces/user.interface';
+import { CommonBusService } from 'app/services/common-bus.service';
+import { NavigationStatusService } from 'app/services/navigation-status.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -13,27 +15,46 @@ import { LoginModalComponent } from '../login-modal/login-modal.component';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnDestroy {
+  private _currentUserSubs: Subscription;
   private _pageNameSubs: Subscription;
-  public icon: string = IMAGE_ROUTES.GAIA_LOGO;
-  public link: string = APP_ROUTES.DASHBOARD;
-  public currentPageName: string = ``;
   public buttonText: string = `LOG_IN`;
+  public currentPageName: string = ``;
+  public icon: string = IMAGE_ROUTES.GAIA_LOGO;
+  public isLogged: boolean = false;
+  public link: string = APP_ROUTES.DASHBOARD;
+  public username: string = '';
 
-  constructor(private readonly _navigationStatusService: NavigationStatusService, public dialog: MatDialog) {
+  constructor(
+    private readonly _navigationStatusService: NavigationStatusService,
+    private readonly _commonBus: CommonBusService,
+    public dialog: MatDialog
+  ) {
     this._pageNameSubs = this._navigationStatusService
       .getActiveMenuItem()
-      .subscribe((item: IMenuItem) => (this.currentPageName = item.buttonName.toLocaleUpperCase()));
+      .subscribe({
+        next: (item: IMenuItem) =>
+          (this.currentPageName = item.buttonName.toLocaleUpperCase())
+      });
+
+    this._currentUserSubs = this._commonBus
+      .getCurrentUser()
+      .subscribe({ next: (user: IUser) => (this.username = user.username) });
   }
 
   public openLogin() {
     const dialogRef = this.dialog.open(LoginModalComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+      if (result) {
+        console.log(result);
+        this.isLogged = result.isLogged;
+        this.username = result.username;
+      }
     });
   }
 
   ngOnDestroy(): void {
     this._pageNameSubs?.unsubscribe();
+    this._currentUserSubs?.unsubscribe();
   }
 }

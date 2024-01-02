@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { IMenuItem } from 'app/interfaces/menu-item.interface';
 import { Observable, Subject } from 'rxjs';
-import { IMenuItem } from '../interfaces/menu-item.interface';
 
 @Injectable({
   providedIn: 'root'

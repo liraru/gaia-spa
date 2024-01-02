@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MENU } from '../../../constants/menu.constant';
-import { IMenuItem } from '../../../interfaces/menu-item.interface';
-import { MenuItemModule } from '../../@micro-modules/menu-item/menu-item.module';
+import { MENU } from 'app/constants/menu.constant';
+import { IMenuItem } from 'app/interfaces/menu-item.interface';
+import { MenuItemModule } from 'app/modules/@micro-modules/menu-item/menu-item.module';
 import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({

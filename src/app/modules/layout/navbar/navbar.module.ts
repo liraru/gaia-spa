@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -11,18 +12,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginService } from './services/login.service';
 
 @NgModule({
-  declarations: [
-    NavbarComponent,
-    LoginModalComponent
-  ],
+  declarations: [NavbarComponent, LoginModalComponent],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
     TranslateModule.forChild(),
+    // ↓ MATERIAL ↓ //
     MatDialogModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule
   ],
   providers: [LoginService],
   exports: [NavbarComponent]

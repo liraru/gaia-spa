@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MENU } from '../../../../constants/menu.constant';
-import { IMenuItem } from '../../../../interfaces/menu-item.interface';
-import { NavigationStatusService } from '../../../../services/navigation-status.service';
+import { MENU } from 'app/constants/menu.constant';
+import { IMenuItem } from 'app/interfaces/menu-item.interface';
+import { NavigationStatusService } from 'app/services/navigation-status.service';
+
 
 @Component({
   selector: 'app-menu-item',

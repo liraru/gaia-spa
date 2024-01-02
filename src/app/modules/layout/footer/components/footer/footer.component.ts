@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RRSS } from '../../../../../constants/rrss.constant';
+import { RRSS } from 'app/constants/rrss.constant';
 
 @Component({
   selector: 'app-footer',

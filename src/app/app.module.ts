@@ -7,14 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LANG } from './constants/languages.constant';
-import { FooterModule } from './modules/layout/footer/footer.module';
-import { MenuModule } from './modules/layout/menu/menu.module';
-import { NavbarModule } from './modules/layout/navbar/navbar.module';
-import { InterceptorService } from './services/interceptor.service';
-import { NavigationStatusService } from './services/navigation-status.service';
+import { AppRoutingModule } from 'app/app-routing.module';
+import { AppComponent } from 'app/app.component';
+import { LANG } from 'app/constants/languages.constant';
+import { FooterModule } from 'app/modules/layout/footer/footer.module';
+import { MenuModule } from 'app/modules/layout/menu/menu.module';
+import { NavbarModule } from 'app/modules/layout/navbar/navbar.module';
+import { InterceptorService } from 'app/services/interceptor.service';
+import { NavigationStatusService } from 'app/services/navigation-status.service';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -28,6 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     RouterModule,
     AppRoutingModule,
+    NgxWebstorageModule.forRoot(),
     TranslateModule.forRoot({
       defaultLanguage: LANG.ES,
       loader: {

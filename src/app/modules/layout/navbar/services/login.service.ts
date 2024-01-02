@@ -1,15 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../../environments/environment';
-import { SECRETS } from '../../../../../private/secrets.constant';
-import { ENDPOINTS } from '../../../../constants/endpoints.constant';
+import { ENDPOINTS } from 'app/constants/endpoints.constant';
+import { CommonBusService } from 'app/services/common-bus.service';
 import * as CryptoJS from 'crypto-js';
+import { environment } from 'environments/environment.dev';
+import { SECRETS } from 'private/secrets.constant';
+import { Observable, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  constructor(private readonly _http: HttpClient) {}
+  constructor(
+    private readonly _http: HttpClient,
+    private readonly _commonBus: CommonBusService
+  ) {}
   private readonly _api = environment.api;
 
   private _encrypt(password: string): string {
@@ -19,11 +24,17 @@ export class LoginService {
     ).toString();
   }
 
-  login(user: string, password: string) {
-    return this._http.post(`${this._api}/${ENDPOINTS.LOGIN}`, {
-      username: user,
-      // password: this._encrypt(password)
-      password: password
-    });
+  login(user: string, password: string): Observable<any> {
+    return this._http
+      .post(`${this._api}/${ENDPOINTS.LOGIN}`, {
+        username: user,
+        password: this._encrypt(password)
+      })
+      .pipe(
+        tap((response: any) => {
+          this._commonBus.setAccessToken(response.accessToken);
+          this._commonBus.setCurrentUser(response.user);
+        })
+      );
   }
 }
