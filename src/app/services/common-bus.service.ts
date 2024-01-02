@@ -27,7 +27,6 @@ export class CommonBusService {
 
     //* CURRENT USER
     const user: IUser = this._session.retrieve(STORAGE_KEYS.CURRENT_USER);
-    this._currentUser = user;
     if (user) {
       this.setCurrentUser(user);
     }
