@@ -22,7 +22,8 @@ export class LoginService {
   login(user: string, password: string) {
     return this._http.post(`${this._api}/${ENDPOINTS.LOGIN}`, {
       username: user,
-      password: this._encrypt(password)
+      // password: this._encrypt(password)
+      password: password
     });
   }
 }
