@@ -50,8 +50,8 @@ export class CommonBusService {
   }
 
   public setCurrentUser(user: IUser) {
-    console.log('COMMON BUS SET', this._currentUser);
     this._currentUser = user;
+    console.log('COMMON BUS SET', this._currentUser);
     this._session.store(STORAGE_KEYS.CURRENT_USER, user);
     if (user) {
       this._currentUserSubject.next(user);
