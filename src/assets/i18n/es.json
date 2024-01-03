@@ -1,3 +1,7 @@
 {
-  "LOG_IN": "Iniciar sesión"
+  "LOG_IN": "Iniciar sesión",
+  "LOG_OUT": "Cerrar sesión",
+  "PASSWORD": "Contraseña",
+  "PROFILE": "Perfil",
+  "USERNAME": "Nombre de usuario"
 }

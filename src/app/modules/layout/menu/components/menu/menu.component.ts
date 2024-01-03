@@ -1,9 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { MENU } from 'app/constants/menu.constant';
+import { IMenuItem } from 'app/interfaces/menu-item.interface';
+import { NavigationStatusService } from 'app/services/navigation-status.service';
 import { Subscription } from 'rxjs';
-import { MENU } from '../../../../../constants/menu.constant';
-import { IMenuItem } from '../../../../../interfaces/menu-item.interface';
-import { NavigationStatusService } from '../../../../../services/navigation-status.service';
 
 @Component({
   selector: 'app-menu',

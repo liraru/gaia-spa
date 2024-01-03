@@ -1,9 +1,16 @@
-import { Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { IMAGE_ROUTES } from 'app/constants/image-routes.constant';
+import { APP_ROUTES } from 'app/constants/routes.constant';
+import { IMenuItem } from 'app/interfaces/menu-item.interface';
+import { LoginModalComponent } from 'app/modules/layout/navbar/components/login-modal/login-modal.component';
+import { LoginService } from 'app/modules/layout/navbar/services/login.service';
+import { IUser } from 'app/modules/sections/management/interfaces/user.interface';
+import { CommonBusService } from 'app/services/common-bus.service';
+import { NavigationStatusService } from 'app/services/navigation-status.service';
 import { Subscription } from 'rxjs';
-import { IMAGE_ROUTES } from '../../../../../constants/image-routes.constant';
-import { APP_ROUTES } from '../../../../../constants/routes.constant';
-import { IMenuItem } from '../../../../../interfaces/menu-item.interface';
-import { NavigationStatusService } from '../../../../../services/navigation-status.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,19 +18,59 @@ import { NavigationStatusService } from '../../../../../services/navigation-stat
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnDestroy {
-  private _pageNameSubs: Subscription;
-  public icon: string = IMAGE_ROUTES.GAIA_LOGO;
-  public link: string = APP_ROUTES.DASHBOARD;
+  private _currentUserSubs?: Subscription;
+  private _pageNameSubs?: Subscription;
+  public buttonText: string = `LOG_IN`;
   public currentPageName: string = ``;
-  public buttonText :string = `LOG_IN`;
+  public icon: string = IMAGE_ROUTES.GAIA_LOGO;
+  public isLogged: boolean = false;
+  public link: string = APP_ROUTES.DASHBOARD;
+  public username?: string = '';
 
-  constructor(private readonly _navigationStatusService: NavigationStatusService) {
-    this._pageNameSubs = this._navigationStatusService
+  constructor(
+    private readonly _$commonBus: CommonBusService,
+    private readonly _$navigationStatusService: NavigationStatusService,
+    private readonly _iconRegistry: MatIconRegistry,
+    private readonly _loginService: LoginService,
+    private readonly _sanitizer: DomSanitizer,
+    public dialog: MatDialog
+  ) {
+    this._pageNameSubs = this._$navigationStatusService
       .getActiveMenuItem()
-      .subscribe((item: IMenuItem) => (this.currentPageName = item.buttonName.toLocaleUpperCase()));
+      .subscribe({
+        next: (item: IMenuItem) =>
+          (this.currentPageName = item.buttonName.toLocaleUpperCase())
+      });
+
+    this._currentUserSubs = this._$commonBus.getCurrentUser().subscribe({
+      next: (user: IUser | undefined) => {
+        this.username = user?.username ?? '';
+        this.isLogged = this.username !== '';
+      }
+    });
+  }
+
+  public openLogin() {
+    const dialogRef = this.dialog.open(LoginModalComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.isLogged = result.isLogged;
+        this.username = result.username;
+      }
+    });
+  }
+
+  public openUserProfile() {
+    alert('open menu click');
+  }
+
+  logOut() {
+    this._loginService.logout();
   }
 
   ngOnDestroy(): void {
     this._pageNameSubs?.unsubscribe();
+    this._currentUserSubs?.unsubscribe();
   }
 }

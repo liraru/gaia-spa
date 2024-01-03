@@ -3,12 +3,30 @@
     <div [routerLink]="link" routerLinkActive="router-link-active">
       <img [src]="icon" alt="{{ icon }}" />
     </div>
-    <h1 [routerLink]="link" routerLinkActive="router-link-active">GAIA</h1>
+    <span
+      [routerLink]="link"
+      class="application-name"
+      routerLinkActive="router-link-active"
+      >GAIA</span
+    >
   </div>
   <div class="current-page" *ngIf="currentPageName !== 'DASHBOARD'">
-    <h3>{{ currentPageName }}</h3>
+    <span>{{ currentPageName }}</span>
   </div>
   <div class="user-area">
-    <button>{{ buttonText | translate }}</button>
+    @if(!isLogged) {
+    <button mat-raised-button color="primary" (click)="openLogin()">
+      {{ 'LOG_IN' | translate }}
+    </button>
+    } @else {
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="user_menu">
+      <mat-icon svgIcon="account_circle"></mat-icon>
+      {{ username }}
+    </button>
+    <mat-menu #user_menu="matMenu">
+      <button mat-menu-item (click)="openUserProfile()">ITEM 1</button>
+      <button mat-menu-item (click)="logOut()">{{ 'LOG_OUT' | translate }}</button>
+    </mat-menu>
+    }
   </div>
 </div>

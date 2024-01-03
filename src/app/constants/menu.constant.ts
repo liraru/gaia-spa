@@ -1,6 +1,6 @@
-import { IMenuItem } from '../interfaces/menu-item.interface';
-import { IMAGE_ROUTES } from './image-routes.constant';
-import { APP_ROUTES } from './routes.constant';
+import { IMAGE_ROUTES } from 'app/constants/image-routes.constant';
+import { APP_ROUTES } from 'app/constants/routes.constant';
+import { IMenuItem } from 'app/interfaces/menu-item.interface';
 
 export const MENU: IMenuItem[] = [
   {
