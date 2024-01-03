@@ -6,6 +6,7 @@ import { IMAGE_ROUTES } from 'app/constants/image-routes.constant';
 import { APP_ROUTES } from 'app/constants/routes.constant';
 import { IMenuItem } from 'app/interfaces/menu-item.interface';
 import { LoginModalComponent } from 'app/modules/layout/navbar/components/login-modal/login-modal.component';
+import { LoginService } from 'app/modules/layout/navbar/services/login.service';
 import { IUser } from 'app/modules/sections/management/interfaces/user.interface';
 import { CommonBusService } from 'app/services/common-bus.service';
 import { NavigationStatusService } from 'app/services/navigation-status.service';
@@ -24,12 +25,13 @@ export class NavbarComponent implements OnDestroy {
   public icon: string = IMAGE_ROUTES.GAIA_LOGO;
   public isLogged: boolean = false;
   public link: string = APP_ROUTES.DASHBOARD;
-  public username: string = '';
+  public username?: string = '';
 
   constructor(
     private readonly _$commonBus: CommonBusService,
     private readonly _$navigationStatusService: NavigationStatusService,
     private readonly _iconRegistry: MatIconRegistry,
+    private readonly _loginService: LoginService,
     private readonly _sanitizer: DomSanitizer,
     public dialog: MatDialog
   ) {
@@ -41,8 +43,8 @@ export class NavbarComponent implements OnDestroy {
       });
 
     this._currentUserSubs = this._$commonBus.getCurrentUser().subscribe({
-      next: (user: IUser) => {
-        this.username = user?.username;
+      next: (user: IUser | undefined) => {
+        this.username = user?.username ?? '';
         this.isLogged = this.username !== '';
       }
     });
@@ -59,8 +61,12 @@ export class NavbarComponent implements OnDestroy {
     });
   }
 
-  public openUserMenu() {
-    console.log('open menu click');
+  public openUserProfile() {
+    alert('open menu click');
+  }
+
+  logOut() {
+    this._loginService.logout();
   }
 
   ngOnDestroy(): void {

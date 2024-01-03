@@ -8,29 +8,31 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class CommonBusService {
-  private _accessTokenSubject: BehaviorSubject<string> =
-    new BehaviorSubject<string>(this._session.retrieve(STORAGE_KEYS.TOKEN));
-  private _currentUserSubject: BehaviorSubject<IUser> =
-    new BehaviorSubject<IUser>(
+  private _accessTokenSubject: BehaviorSubject<string | undefined> =
+    new BehaviorSubject<string | undefined>(
+      this._session.retrieve(STORAGE_KEYS.TOKEN)
+    );
+  private _currentUserSubject: BehaviorSubject<IUser | undefined> =
+    new BehaviorSubject<IUser | undefined>(
       this._session.retrieve(STORAGE_KEYS.CURRENT_USER)
     );
 
   constructor(private readonly _session: SessionStorageService) {}
 
-  public getAccessToken(): Observable<string> {
+  public getAccessToken(): Observable<string | undefined> {
     return this._accessTokenSubject.asObservable();
   }
 
-  public setAccessToken(token: string) {
-    this._session.store(STORAGE_KEYS.TOKEN, token || '');
+  public setAccessToken(token: string | undefined) {
+    this._session.store(STORAGE_KEYS.TOKEN, token);
     this._accessTokenSubject.next(token);
   }
 
-  public getCurrentUser(): Observable<IUser> {
+  public getCurrentUser(): Observable<IUser | undefined> {
     return this._currentUserSubject.asObservable();
   }
 
-  public setCurrentUser(user: IUser) {
+  public setCurrentUser(user: IUser | undefined) {
     this._session.store(STORAGE_KEYS.CURRENT_USER, user);
     this._currentUserSubject.next(user);
   }

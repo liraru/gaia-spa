@@ -37,4 +37,9 @@ export class LoginService {
         })
       );
   }
+
+  logout() {
+    this._commonBus.setAccessToken(undefined);
+    this._commonBus.setCurrentUser(undefined);
+  }
 }

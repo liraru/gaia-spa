@@ -11,6 +11,7 @@ import { LoginModalComponent } from './components/login-modal/login-modal.compon
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginService } from './services/login.service';
 import { CommonBusService } from 'app/services/common-bus.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [NavbarComponent, LoginModalComponent],
@@ -20,10 +21,11 @@ import { CommonBusService } from 'app/services/common-bus.service';
     ReactiveFormsModule,
     TranslateModule.forChild(),
     // ↓ MATERIAL ↓ //
-    MatDialogModule,
     MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
     MatInputModule,
-    MatIconModule
+    MatMenuModule
   ],
   providers: [LoginService, CommonBusService],
   exports: [NavbarComponent]

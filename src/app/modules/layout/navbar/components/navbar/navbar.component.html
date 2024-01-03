@@ -19,10 +19,14 @@
       {{ 'LOG_IN' | translate }}
     </button>
     } @else {
-    <button mat-raised-button color="primary" (click)="openLogin()">
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="user_menu">
       <mat-icon svgIcon="account_circle"></mat-icon>
       {{ username }}
     </button>
+    <mat-menu #user_menu="matMenu">
+      <button mat-menu-item (click)="openUserProfile()">ITEM 1</button>
+      <button mat-menu-item (click)="logOut()">{{ 'LOG_OUT' | translate }}</button>
+    </mat-menu>
     }
   </div>
 </div>
