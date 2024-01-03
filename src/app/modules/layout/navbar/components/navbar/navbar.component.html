@@ -19,8 +19,9 @@
       {{ 'LOG_IN' | translate }}
     </button>
     } @else {
-    <button mat-icon-button (click)="openUserMenu()">
-      <mat-icon fontIcon="home"></mat-icon>
+    <button mat-raised-button color="primary" (click)="openLogin()">
+      <mat-icon svgIcon="account_circle"></mat-icon>
+      {{ username }}
     </button>
     }
   </div>

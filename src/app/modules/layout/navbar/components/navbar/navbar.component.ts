@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { IMAGE_ROUTES } from 'app/constants/image-routes.constant';
 import { APP_ROUTES } from 'app/constants/routes.constant';
 import { IMenuItem } from 'app/interfaces/menu-item.interface';
@@ -14,7 +16,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent implements AfterViewInit, OnDestroy {
+export class NavbarComponent implements OnDestroy {
   private _currentUserSubs?: Subscription;
   private _pageNameSubs?: Subscription;
   public buttonText: string = `LOG_IN`;
@@ -25,8 +27,10 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
   public username: string = '';
 
   constructor(
-    private readonly _$navigationStatusService: NavigationStatusService,
     private readonly _$commonBus: CommonBusService,
+    private readonly _$navigationStatusService: NavigationStatusService,
+    private readonly _iconRegistry: MatIconRegistry,
+    private readonly _sanitizer: DomSanitizer,
     public dialog: MatDialog
   ) {
     this._pageNameSubs = this._$navigationStatusService
@@ -36,24 +40,19 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
           (this.currentPageName = item.buttonName.toLocaleUpperCase())
       });
 
-    console.log('navbar component');
     this._currentUserSubs = this._$commonBus.getCurrentUser().subscribe({
       next: (user: IUser) => {
-        console.log('_currentUserSubs', user);
-        this.username = user.username;
+        this.username = user?.username;
         this.isLogged = this.username !== '';
       }
     });
   }
-
-  ngAfterViewInit(): void {}
 
   public openLogin() {
     const dialogRef = this.dialog.open(LoginModalComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log(result);
         this.isLogged = result.isLogged;
         this.username = result.username;
       }
