@@ -1,8 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { MENU } from 'app/constants/menu.constant';
 import { IMenuItem } from 'app/interfaces/menu-item.interface';
 import { NavigationStatusService } from 'app/services/navigation-status.service';
-
 
 @Component({
   selector: 'app-menu-item',
@@ -16,7 +21,9 @@ export class MenuItemComponent {
 
   public icons = [];
 
-  constructor(private readonly _navigationStatusService: NavigationStatusService) {
+  constructor(
+    private readonly _navigationStatusService: NavigationStatusService
+  ) {
     this.item = MENU[0];
   }
 

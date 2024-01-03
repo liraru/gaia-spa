@@ -10,6 +10,8 @@
   max-height: calc(100vh - 107px);
   overflow-y: auto;
   overflow-x: hidden;
+  width: 100vw;
+  padding-right: 20px;
 }
 
 app-navbar {
