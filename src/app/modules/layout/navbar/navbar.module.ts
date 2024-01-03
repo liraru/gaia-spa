@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginService } from './services/login.service';
+import { CommonBusService } from 'app/services/common-bus.service';
 
 @NgModule({
   declarations: [NavbarComponent, LoginModalComponent],
@@ -24,7 +25,7 @@ import { LoginService } from './services/login.service';
     MatInputModule,
     MatIconModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, CommonBusService],
   exports: [NavbarComponent]
 })
 export class NavbarModule {}

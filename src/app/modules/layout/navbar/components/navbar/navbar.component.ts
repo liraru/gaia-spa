@@ -25,21 +25,19 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
   public username: string = '';
 
   constructor(
-    private readonly _navigationStatusService: NavigationStatusService,
-    private readonly _commonBus: CommonBusService,
+    private readonly _$navigationStatusService: NavigationStatusService,
+    private readonly _$commonBus: CommonBusService,
     public dialog: MatDialog
   ) {
-    this._pageNameSubs = this._navigationStatusService
+    this._pageNameSubs = this._$navigationStatusService
       .getActiveMenuItem()
       .subscribe({
         next: (item: IMenuItem) =>
           (this.currentPageName = item.buttonName.toLocaleUpperCase())
       });
-  }
 
-  ngAfterViewInit(): void {
-    console.log('this._currentUserSubs ngAfterViewInit');
-    this._currentUserSubs = this._commonBus.getCurrentUser().subscribe({
+    console.log('navbar component');
+    this._currentUserSubs = this._$commonBus.getCurrentUser().subscribe({
       next: (user: IUser) => {
         console.log('_currentUserSubs', user);
         this.username = user.username;
@@ -47,6 +45,8 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
       }
     });
   }
+
+  ngAfterViewInit(): void {}
 
   public openLogin() {
     const dialogRef = this.dialog.open(LoginModalComponent);
