@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ICONS } from 'app/constants/icons.constant';
 import { IMAGE_ROUTES } from 'app/constants/image-routes.constant';
 import { APP_ROUTES } from 'app/constants/routes.constant';
 import { IMenuItem } from 'app/interfaces/menu-item.interface';
@@ -26,6 +27,7 @@ export class NavbarComponent implements OnDestroy {
   public isLogged: boolean = false;
   public link: string = APP_ROUTES.DASHBOARD;
   public username?: string = '';
+  public ICONS = ICONS;
 
   constructor(
     private readonly _$commonBus: CommonBusService,
