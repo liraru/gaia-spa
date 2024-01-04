@@ -1,8 +1,16 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration
+} from '@angular/platform-browser';
 
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  provideHttpClient,
+  withFetch
+} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -45,10 +53,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     provideClientHydration(),
     NavigationStatusService,
-    provideHttpClient(withFetch()),
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

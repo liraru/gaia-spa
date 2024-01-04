@@ -1,3 +1,4 @@
 export const ENDPOINTS = {
-  LOGIN: `auth/login`
+  LOGIN: `auth/login`,
+  USERS_LIST: `users`
 }

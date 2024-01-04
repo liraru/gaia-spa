@@ -3,6 +3,7 @@ export interface IUser {
   username: string;
   name: string;
   lastname: string;
+  fullname?: string;
   birthdate: string;
   height: number;
   applications: string[];

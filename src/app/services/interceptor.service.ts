@@ -1,4 +1,5 @@
 import {
+  HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
@@ -7,7 +8,7 @@ import {
 import { Injectable } from '@angular/core';
 import { STORAGE_KEYS } from 'app/constants/storage-keys.constants';
 import { SessionStorageService } from 'ngx-webstorage';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,8 @@ export class InterceptorService implements HttpInterceptor {
         .set(`Authorization`, `Bearer ${token || ''}`)
     });
 
-    return next.handle(request);
+    return next
+      .handle(request)
+      .pipe(catchError((error: HttpErrorResponse) => throwError(() => error)));
   }
 }

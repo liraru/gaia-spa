@@ -1,7 +1,10 @@
 {
   "APPLICATIONS": "Aplicaciones",
+  "BIRTHDATE": "F.Nacimiento",
+  "HEIGHT": "Altura",
   "LOG_IN": "Iniciar sesión",
   "LOG_OUT": "Cerrar sesión",
+  "NAME": "Nombre",
   "PASSWORD": "Contraseña",
   "PROFILE": "Perfil",
   "USERNAME": "Nombre de usuario",
