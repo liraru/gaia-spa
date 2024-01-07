@@ -1,0 +1,45 @@
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+
+  tr {
+    &:hover {
+      font-weight: bold;
+    }
+  }
+
+  th {
+    height: 50px;
+  }
+
+  td {
+    height: 35px;
+    cursor: pointer;
+  }
+
+  th,
+  td {
+    padding-left: 15px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #303030;
+  }
+}
+
+button {
+  border-width: 0px;
+  border-radius: 100%;
+
+  &:hover {
+    background-color: #303030;
+    cursor: pointer;
+  }
+}
+
+.button-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

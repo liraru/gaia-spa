@@ -1,34 +1,31 @@
 import {
   HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
+  HttpHandlerFn,
+  HttpInterceptorFn,
   HttpRequest
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { AppInjector } from 'app/app.module';
 import { STORAGE_KEYS } from 'app/constants/storage-keys.constants';
 import { SessionStorageService } from 'ngx-webstorage';
-import { Observable, catchError, throwError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class InterceptorService implements HttpInterceptor {
-  constructor(private readonly _session: SessionStorageService) {}
+export const AuthInterceptor: HttpInterceptorFn = (
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+) => {
+  const _session = AppInjector.get(SessionStorageService);
+  const token = _session.retrieve(STORAGE_KEYS.TOKEN);
+  console.log('TOKEN', token);
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    const token = this._session.retrieve(STORAGE_KEYS.TOKEN);
-    const request = req.clone({
-      headers: req.headers
-        .set(`Access-Control-Allow-Origin`, `*`)
-        .set(`Authorization`, `Bearer ${token || ''}`)
-    });
+  const request = req.clone({
+    // withCredentials: true,
+    headers: req.headers
+      .set('Content-Type', 'application/json')
+      .set(`Access-Control-Allow-Origin`, `*`)
+      .set(`Authorization`, `Bearer ${token ?? ''}`)
+  });
 
-    return next
-      .handle(request)
-      .pipe(catchError((error: HttpErrorResponse) => throwError(() => error)));
-  }
-}
+  return next(request).pipe(
+    catchError((error: HttpErrorResponse) => throwError(() => error))
+  );
+};

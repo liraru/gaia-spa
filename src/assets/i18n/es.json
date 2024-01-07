@@ -8,5 +8,7 @@
   "PASSWORD": "Contraseña",
   "PROFILE": "Perfil",
   "USERNAME": "Nombre de usuario",
-  "USERS": "Usuarios"
+  "USERS": "Usuarios",
+  "EDIT": "Editar",
+  "FULLNAME": "Nombre"
 }
