@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ENDPOINTS } from 'app/constants/endpoints.constant';
 import { CommonBusService } from 'app/services/common-bus.service';
 import * as CryptoJS from 'crypto-js';
@@ -13,7 +14,8 @@ import { Observable, map, tap } from 'rxjs';
 export class LoginService {
   constructor(
     private readonly _http: HttpClient,
-    private readonly _commonBus: CommonBusService
+    private readonly _commonBus: CommonBusService,
+    private readonly _router: Router
   ) {}
   private readonly _api = environment.api;
 
@@ -41,5 +43,6 @@ export class LoginService {
   logout() {
     this._commonBus.setAccessToken(undefined);
     this._commonBus.setCurrentUser(undefined);
+    this._router.navigate([`/`]);
   }
 }

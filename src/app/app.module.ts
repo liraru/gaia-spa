@@ -1,8 +1,17 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { Injector, NgModule } from '@angular/core';
+import {
+  BrowserModule,
+  provideClientHydration
+} from '@angular/platform-browser';
 
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  provideHttpClient,
+  withFetch,
+  withInterceptors
+} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -13,9 +22,11 @@ import { LANG } from 'app/constants/languages.constant';
 import { FooterModule } from 'app/modules/layout/footer/footer.module';
 import { MenuModule } from 'app/modules/layout/menu/menu.module';
 import { NavbarModule } from 'app/modules/layout/navbar/navbar.module';
-import { InterceptorService } from 'app/services/interceptor.service';
 import { NavigationStatusService } from 'app/services/navigation-status.service';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { AuthInterceptor } from 'app/services/interceptor.service';
+
+export let AppInjector: Injector;
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -24,7 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    // * ANGULAR * //
+    // * ↓ ANGULAR ↓ * //
     CommonModule,
     BrowserModule,
     RouterModule,
@@ -47,9 +58,12 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     provideClientHydration(),
     NavigationStatusService,
-    provideHttpClient(withFetch()),
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
+    provideHttpClient(withInterceptors([AuthInterceptor]))
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private _injector: Injector) {
+    AppInjector = this._injector;
+  }
+}

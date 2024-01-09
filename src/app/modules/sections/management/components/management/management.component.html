@@ -1,1 +1,14 @@
-<p>management works!</p>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ 'USERS' | translate }} </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-users></app-users>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ 'APPLICATIONS' | translate }} </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-applications></app-applications>
+  </mat-expansion-panel>
+</mat-accordion>

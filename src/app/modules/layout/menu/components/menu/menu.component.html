@@ -1,7 +1,7 @@
 <div class="menu-container">
   <div class="first-section">
     @for(item of menu; track item.code; let isLast = $last) {
-      @if(item.code !== 'DASHBOARD' && !isLast) {
+      @if(item.code !== 'DASHBOARD' && !isLast && isLogged) {
         <app-menu-item
           [item]="item"
           [isActive]="current === item.route"

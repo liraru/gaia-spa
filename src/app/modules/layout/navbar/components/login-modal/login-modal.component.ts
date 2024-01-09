@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { LoginService } from 'app/modules/layout/navbar/services/login.service';
-import { CommonBusService } from 'app/services/common-bus.service';
 
 @Component({
   selector: 'app-login-modal',
@@ -12,7 +11,6 @@ import { CommonBusService } from 'app/services/common-bus.service';
 export class LoginModalComponent {
   constructor(
     private readonly _loginService: LoginService,
-    private readonly _commonBus: CommonBusService,
     public dialogRef: MatDialogRef<LoginModalComponent>
   ) {}
   public loginForm: FormGroup = new FormGroup({
@@ -25,7 +23,6 @@ export class LoginModalComponent {
       .login(this.loginForm.value.username, this.loginForm.value.password)
       .subscribe({
         next: (value) => {
-          console.log('response value', value);
           if (value?.accessToken?.length < 1) {
             alert(`No autorizado`);
           }
