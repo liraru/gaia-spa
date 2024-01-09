@@ -2,6 +2,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { MENU } from 'app/constants/menu.constant';
 import { IMenuItem } from 'app/interfaces/menu-item.interface';
+import { LoginService } from 'app/modules/layout/navbar/services/login.service';
+import { CommonBusService } from 'app/services/common-bus.service';
 import { NavigationStatusService } from 'app/services/navigation-status.service';
 import { Subscription } from 'rxjs';
 
@@ -11,13 +13,25 @@ import { Subscription } from 'rxjs';
   styleUrl: './menu.component.scss'
 })
 export class MenuComponent implements OnDestroy {
-  private _currentRouteSubs: Subscription;
   private _currentItem?: IMenuItem;
-  public menu: IMenuItem[] = MENU;
-  public lastItem: IMenuItem = MENU[MENU.length - 1];
+  private _currentRouteSubs: Subscription;
+  private _loginSubs: Subscription;
   public current: string = ``;
+  public isLogged: boolean = false;
+  public lastItem: IMenuItem = MENU[MENU.length - 1];
+  public menu: IMenuItem[] = MENU;
 
-  constructor(private _route: Router, private _navitagionStatusSerivce: NavigationStatusService) {
+  constructor(
+    private readonly _route: Router,
+    private readonly _navitagionStatusSerivce: NavigationStatusService,
+    private readonly _commonBus: CommonBusService
+  ) {
+    this._loginSubs = this._commonBus
+      .getAccessToken()
+      .subscribe((token: any) => {
+        this.isLogged = token?.length > 0;
+      });
+
     this._currentRouteSubs = this._route.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const route = event.url.substring(1, event.url.length);
