@@ -1,0 +1,18 @@
+<div class="login-container">
+  <form [formGroup]="userForm">
+    <mat-form-field>
+      <mat-label>{{ 'USERNAME' | translate }}</mat-label>
+      <input matInput formControlName="username" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
+      <input matInput formControlName="password" />
+    </mat-form-field>
+  </form>
+  <div class="button-row">
+    <button mat-raised-button color="primary" (click)="save()">
+      {{ 'LOG_IN' | translate }}
+    </button>
+  </div>
+</div>
