@@ -33,7 +33,6 @@ export const AuthInterceptor: HttpInterceptorFn = (
     catchError((error: HttpErrorResponse) => {
       if (error.error?.statusCode === 401) {
         _loginService.logout();
-        _router.navigate([`/`]);
       }
       return throwError(() => error);
     })
