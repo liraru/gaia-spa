@@ -15,7 +15,7 @@ export class UsersComponent implements AfterViewInit {
   private _users: IUser[] = [];
   public ICONS = ICONS;
   public sortedUsers: IUser[] = [];
-  public displayedColumns: string[] = ['username', 'fullname', 'birthdate', 'height'];
+  public displayedColumns: string[] = ['username', 'fullname', 'birthdate', 'height', 'actions'];
 
   constructor(private readonly _usersService: UsersService, public dialog: MatDialog) {}
 
