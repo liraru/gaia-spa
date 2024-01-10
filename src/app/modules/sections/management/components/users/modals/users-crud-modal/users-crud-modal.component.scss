@@ -1,3 +1,12 @@
+mat-form-field {
+  margin-bottom: 10px;
+}
+
+mat-hint,
+mat-error {
+  font-size: 80%;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -9,16 +18,26 @@
 
 form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
 }
 
-mat-form-field {
-  margin-bottom: 10px;
-}
-
-mat-hint, mat-error {
-  font-size: 80%;
+.button-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: -webkit-fill-available;
+  gap: 24px;
 }

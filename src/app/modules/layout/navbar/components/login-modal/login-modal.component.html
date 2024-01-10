@@ -1,12 +1,12 @@
 <div class="login-container">
   <form [formGroup]="loginForm">
     <mat-form-field>
-      <mat-label>{{ 'USERNAME' | translate }}</mat-label>
+      <mat-label>{{ 'USER.USERNAME' | translate }}</mat-label>
       <input matInput formControlName="username" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
+      <mat-label>{{ 'USER.PASSWORD' | translate }}</mat-label>
       <input matInput formControlName="password" (keyup.enter)="login()" />
     </mat-form-field>
   </form>

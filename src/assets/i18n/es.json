@@ -1,11 +1,11 @@
 {
   "APPLICATIONS": "Aplicaciones",
-  "CANCEL": "Cancelar",
   "LOG_IN": "Iniciar sesión",
   "LOG_OUT": "Cerrar sesión",
   "PROFILE": "Perfil",
   "USERS": "Usuarios",
   "FORM": {
+    "CANCEL": "Cancelar",
     "EDIT": "Editar",
     "REQUIRED_FIELD": "Campo requerido",
     "SAVE": "Guardar"
