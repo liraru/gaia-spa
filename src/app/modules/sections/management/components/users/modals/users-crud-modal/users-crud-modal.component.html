@@ -4,42 +4,60 @@
       <mat-form-field>
         <mat-label>{{ 'USER.USERNAME' | translate }}</mat-label>
         <input matInput formControlName="username" />
-        @if (!userForm.hasError('required')) {
-        <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
+        @if (userForm.controls['username'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        } @else if (userForm.controls['username'].errors?.['minlength']) {
+        <mat-error>{{
+          'FORM.ERROR.MIN_LENGTH' | translate : { value: lengthValues.stringMinLength }
+        }}</mat-error>
+        }@else if (userForm.controls['username'].hasError('maxlength')) {
+        <mat-error>{{
+          'FORM.ERROR.MAX_LENGTH' | translate : { value: lengthValues.stringMaxLength }
+        }}</mat-error>
         }
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>{{ 'USER.NAME' | translate }}</mat-label>
         <input matInput formControlName="name" />
-        @if (!userForm.hasError('required')) {
-        <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
-        }
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>{{ 'USER.LASTNAME' | translate }}</mat-label>
         <input matInput formControlName="lastname" />
-        @if (!userForm.hasError('required')) {
-        <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
-        }
       </mat-form-field>
     </div>
+
     <div class="row">
       <mat-form-field>
         <mat-label>{{ 'USER.BIRTHDATE' | translate }}</mat-label>
         <input matInput type="date" formControlName="birthdate" />
-        @if (!userForm.hasError('required')) {
-        <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
+        @if (userForm.controls['birthdate'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        } @else if (userForm.controls['birthdate'].errors?.['minlength']) {
+        <mat-error>{{
+          'FORM.ERROR.MIN_LENGTH' | translate : { value: lengthValues.stringMinLength }
+        }}</mat-error>
+        }@else if (userForm.controls['birthdate'].hasError('maxlength')) {
+        <mat-error>{{
+          'FORM.ERROR.MAX_LENGTH' | translate : { value: lengthValues.stringMaxLength }
+        }}</mat-error>
         }
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>{{ 'USER.HEIGHT' | translate }}</mat-label>
-        <input matInput maxlength="3" maxlength="3" #height formControlName="height" />
-        <mat-hint align="end">{{ height.value.length }} / 3</mat-hint>
-        @if (!userForm.hasError('required')) {
-        <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
+        <input matInput type="number" formControlName="height" />
+        @if (userForm.controls['height'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        } @else if (userForm.controls['height'].hasError('min')) {
+        <mat-error>{{
+          'FORM.ERROR.MIN_VALUE' | translate : { value: lengthValues.heightMin }
+        }}</mat-error>
+        } @else if (userForm.controls['height'].hasError('max')) {
+        <mat-error>{{
+          'FORM.ERROR.MAX_VALUE' | translate : { value: lengthValues.heightMax }
+        }}</mat-error>
         }
       </mat-form-field>
     </div>
@@ -48,7 +66,7 @@
         <mat-label>{{ 'USER.PASSWORD' | translate }}</mat-label>
         <input matInput formControlName="password" />
         @if (!userForm.hasError('required')) {
-        <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
         }
       </mat-form-field>
 
@@ -56,7 +74,7 @@
         <mat-label>{{ 'USER.REPEAT_PASSWORD' | translate }}</mat-label>
         <input matInput formControlName="controlPassword" />
         @if (!userForm.hasError('required')) {
-        <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
         }
       </mat-form-field>
     </div>

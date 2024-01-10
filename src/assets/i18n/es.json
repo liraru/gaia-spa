@@ -7,8 +7,14 @@
   "FORM": {
     "CANCEL": "Cancelar",
     "EDIT": "Editar",
-    "REQUIRED_FIELD": "Campo requerido",
-    "SAVE": "Guardar"
+    "SAVE": "Guardar",
+    "ERROR": {
+      "REQUIRED_FIELD": "Campo requerido",
+      "MAX_LENGTH": "El máximo de carácteres es {{ value }}",
+      "MIN_LENGTH": "El mínimo de carácteres es {{ value }}",
+      "MIN_VALUE": "El valor mínimo es {{ value }}",
+      "MAX_VALUE": "El valor máximo es {{ value }}"
+    }
   },
   "USER": {
     "BIRTHDATE": "F.Nacimiento",
