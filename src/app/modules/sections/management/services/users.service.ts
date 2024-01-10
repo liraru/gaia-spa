@@ -7,7 +7,7 @@ import { environment } from 'environments/environment';
 import { map } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
   private readonly _api = environment.api;
@@ -27,11 +27,15 @@ export class UsersService {
             fullname: `${user.name} ${user.lastname}`,
             birthdate: StringHelper.parseDBDate(user.birthdate),
             height: user.height,
-            applications: user.applications
+            applications: user.applications,
           });
         });
         return parsed;
-      })
+      }),
     );
+  }
+
+  public addUser(user: IUser) {
+    return this._http.post(`${this._api}/${ENDPOINTS.USERS_LIST}`, user);
   }
 }

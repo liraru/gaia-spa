@@ -1,10 +1,10 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validator,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
@@ -13,6 +13,7 @@ import { REGEX } from 'app/constants/regex.constant';
 import { StringHelper } from 'app/helpers/string.helper';
 import { LoginModalComponent } from 'app/modules/layout/navbar/components/login-modal/login-modal.component';
 import { IUser } from 'app/modules/sections/management/interfaces/user.interface';
+import { UsersService } from 'app/modules/sections/management/services/users.service';
 
 @Component({
   selector: 'app-users-crud-modal',
@@ -30,7 +31,10 @@ export class UsersCrudModalComponent {
     stringMinLength: 5,
   };
 
-  constructor(private readonly _dialogRef: MatDialogRef<LoginModalComponent>) {
+  constructor(
+    private readonly _dialogRef: MatDialogRef<LoginModalComponent>,
+    private readonly _usersService: UsersService,
+  ) {
     this.userForm = new FormGroup({
       username: new FormControl('', [
         Validators.required,
@@ -80,10 +84,16 @@ export class UsersCrudModalComponent {
   }
 
   save() {
-    // console.log(this._parseFormValues());
-    console.log(this.userForm.value);
-    Object.keys(this.userForm.controls).forEach((element) => {
-      console.log(this.userForm.controls[element].errors);
+    // console.log(this.userForm.value);
+    // Object.keys(this.userForm.controls).forEach((element) => {
+    //   console.log(this.userForm.controls[element].errors);
+    // });
+    this._usersService.addUser(this._parseFormValues()).subscribe({
+      next: (res) => {
+        console.log(res);
+        this._dialogRef.close({ result: res });
+      },
+      error: (error) => console.error(error),
     });
   }
 }
