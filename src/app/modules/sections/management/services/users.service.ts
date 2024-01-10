@@ -30,7 +30,6 @@ export class UsersService {
             applications: user.applications
           });
         });
-        console.log('PARSED', parsed);
         return parsed;
       })
     );

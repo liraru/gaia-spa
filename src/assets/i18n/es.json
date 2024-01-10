@@ -1,16 +1,23 @@
 {
   "APPLICATIONS": "Aplicaciones",
-  "BIRTHDATE": "F.Nacimiento",
-  "EDIT": "Editar",
-  "FULLNAME": "Nombre",
-  "HEIGHT": "Altura",
-  "LASTNAME": "Apellidos",
+  "CANCEL": "Cancelar",
   "LOG_IN": "Iniciar sesión",
   "LOG_OUT": "Cerrar sesión",
-  "NAME": "Nombre",
-  "PASSWORD": "Contraseña",
   "PROFILE": "Perfil",
-  "REPEAT_PASSWORD": "Repetir contraseña",
-  "USERNAME": "Nombre de usuario",
-  "USERS": "Usuarios"
+  "USERS": "Usuarios",
+  "FORM": {
+    "EDIT": "Editar",
+    "REQUIRED_FIELD": "Campo requerido",
+    "SAVE": "Guardar"
+  },
+  "USER": {
+    "BIRTHDATE": "F.Nacimiento",
+    "FULLNAME": "Nombre",
+    "HEIGHT": "Altura",
+    "LASTNAME": "Apellidos",
+    "NAME": "Nombre",
+    "PASSWORD": "Contraseña",
+    "REPEAT_PASSWORD": "Repetir contraseña",
+    "USERNAME": "Nombre de usuario"
+  }
 }

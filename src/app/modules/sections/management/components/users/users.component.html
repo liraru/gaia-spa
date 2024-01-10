@@ -3,6 +3,7 @@
     mat-fab
     color="primary"
     aria-label="Example icon button with a delete icon"
+    (click)="addUser()"
   >
     <fa-icon [icon]="ICONS.ADD"></fa-icon>
   </button>
@@ -17,28 +18,28 @@
 >
   <ng-container matColumnDef="username">
     <th mat-header-cell mat-sort-header *matHeaderCellDef>
-      {{ 'USERNAME' | translate }}.
+      {{ 'USER.USERNAME' | translate }}
     </th>
     <td mat-cell *matCellDef="let el">{{ el.username }}</td>
   </ng-container>
 
   <ng-container matColumnDef="fullname">
     <th mat-header-cell mat-sort-header *matHeaderCellDef>
-      {{ 'FULLNAME' | translate }}
+      {{ 'USER.FULLNAME' | translate }}
     </th>
     <td mat-cell *matCellDef="let el">{{ el.fullname }}</td>
   </ng-container>
 
   <ng-container matColumnDef="birthdate">
     <th mat-header-cell mat-sort-header *matHeaderCellDef>
-      {{ 'BIRTHDATE' | translate }}
+      {{ 'USER.BIRTHDATE' | translate }}
     </th>
     <td mat-cell *matCellDef="let el">{{ el.birthdate }}</td>
   </ng-container>
 
   <ng-container matColumnDef="height">
     <th mat-header-cell mat-sort-header *matHeaderCellDef>
-      {{ 'HEIGHT' | translate }}
+      {{ 'USER.HEIGHT' | translate }}
     </th>
     <td mat-cell *matCellDef="let el">{{ el.height }}</td>
   </ng-container>

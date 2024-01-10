@@ -17,21 +17,26 @@ import { ApplicationsComponent } from './components/applications/applications.co
 import { UsersCrudModalComponent } from './components/users/modals/users-crud-modal/users-crud-modal.component';
 
 @NgModule({
-  declarations: [ManagementComponent, UsersComponent, ApplicationsComponent, UsersCrudModalComponent],
+  declarations: [
+    ApplicationsComponent,
+    ManagementComponent,
+    UsersComponent,
+    UsersCrudModalComponent
+  ],
   imports: [
     CommonModule,
+    FontAwesomeModule,
     ManagementRoutingModule,
     ReactiveFormsModule,
     TranslateModule.forChild(),
-    FontAwesomeModule,
     // ↓ MATERIAL ↓ //
-    MatExpansionModule,
-    MatTableModule,
-    MatSortModule,
     MatButtonModule,
     MatDialogModule,
+    MatExpansionModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSortModule,
+    MatTableModule
   ]
 })
 export class ManagementModule {}

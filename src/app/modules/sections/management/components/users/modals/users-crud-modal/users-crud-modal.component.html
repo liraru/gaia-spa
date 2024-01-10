@@ -1,44 +1,66 @@
-<div class="login-container">
+<div class="container">
   <form [formGroup]="userForm">
     <mat-form-field>
-      <mat-label>{{ 'USERNAME' | translate }}</mat-label>
+      <mat-label>{{ 'USER.USERNAME' | translate }}</mat-label>
       <input matInput formControlName="username" />
+      @if (!userForm.hasError('required')) {
+      <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>{{ 'NAME' | translate }}</mat-label>
+      <mat-label>{{ 'USER.NAME' | translate }}</mat-label>
       <input matInput formControlName="name" />
+      @if (!userForm.hasError('required')) {
+      <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>{{ 'LASTNAME' | translate }}</mat-label>
+      <mat-label>{{ 'USER.LASTNAME' | translate }}</mat-label>
       <input matInput formControlName="lastname" />
+      @if (!userForm.hasError('required')) {
+      <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>{{ 'BITHDATE' | translate }}</mat-label>
-      <input matInput formControlName="birthdate" />
+      <mat-label>{{ 'USER.BIRTHDATE' | translate }}</mat-label>
+      <input matInput type="date" formControlName="birthdate" />
+      @if (!userForm.hasError('required')) {
+      <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>{{ 'HEIGHT' | translate }}</mat-label>
-      <input matInput formControlName="height" />
+      <mat-label>{{ 'USER.HEIGHT' | translate }}</mat-label>
+      <input matInput maxlength="3" maxlength="3" #height formControlName="height" />
+      <mat-hint align="end">{{ height.value.length }} / 3</mat-hint>
+      @if (!userForm.hasError('required')) {
+      <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
+      <mat-label>{{ 'USER.PASSWORD' | translate }}</mat-label>
       <input matInput formControlName="password" />
+      @if (!userForm.hasError('required')) {
+      <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>{{ 'REPEAT_PASSWORD' | translate }}</mat-label>
+      <mat-label>{{ 'USER.REPEAT_PASSWORD' | translate }}</mat-label>
       <input matInput formControlName="controlPassword" />
+      @if (!userForm.hasError('required')) {
+      <mat-error>{{ 'FORM.REQUIRED_FIELD' | translate }}</mat-error>
+      }
     </mat-form-field>
   </form>
 
   <div class="button-row">
     <button mat-raised-button color="primary" (click)="save()">
-      {{ 'LOG_IN' | translate }}
+      {{ 'FORM.SAVE' | translate }}
     </button>
   </div>
 </div>

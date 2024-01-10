@@ -1,7 +1,5 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ICONS } from 'app/constants/icons.constant';
 import { IMAGE_ROUTES } from 'app/constants/image-routes.constant';
 import { APP_ROUTES } from 'app/constants/routes.constant';
@@ -32,9 +30,7 @@ export class NavbarComponent implements OnDestroy {
   constructor(
     private readonly _$commonBus: CommonBusService,
     private readonly _$navigationStatusService: NavigationStatusService,
-    private readonly _iconRegistry: MatIconRegistry,
     private readonly _loginService: LoginService,
-    private readonly _sanitizer: DomSanitizer,
     public dialog: MatDialog
   ) {
     this._pageNameSubs = this._$navigationStatusService

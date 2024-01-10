@@ -1,10 +1,11 @@
 export interface IUser {
-  uuid: string;
+  uuid?: string;
   username: string;
   name: string;
   lastname: string;
   fullname?: string;
   birthdate: string;
   height: number;
-  applications: string[];
+  password?: string;
+  applications?: string[];
 }
