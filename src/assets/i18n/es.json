@@ -8,6 +8,8 @@
     "CANCEL": "Cancelar",
     "EDIT": "Editar",
     "SAVE": "Guardar",
+    "ADD_MODAL_TITLE": "Alta de {{ field }}",
+    "EDIT_MODAL_TITLE": "Editando {{ value }}",
     "ERROR": {
       "REQUIRED_FIELD": "Campo requerido",
       "MAX_LENGTH": "El máximo de carácteres es {{ value }}",
@@ -18,6 +20,7 @@
     }
   },
   "USER": {
+    "USER": "Usuario",
     "BIRTHDATE": "F.Nacimiento",
     "FULLNAME": "Nombre",
     "HEIGHT": "Altura (cm.)",

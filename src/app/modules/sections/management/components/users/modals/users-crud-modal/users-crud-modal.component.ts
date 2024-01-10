@@ -1,5 +1,5 @@
 import { Dialog } from '@angular/cdk/dialog';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { REGEX } from 'app/constants/regex.constant';
 import { StringHelper } from 'app/helpers/string.helper';
 import { LoginModalComponent } from 'app/modules/layout/navbar/components/login-modal/login-modal.component';
@@ -21,6 +22,8 @@ import { UsersService } from 'app/modules/sections/management/services/users.ser
   styleUrl: './users-crud-modal.component.scss',
 })
 export class UsersCrudModalComponent {
+  @Input() user?: IUser;
+  public modalTitle: string = '';
   public userForm: FormGroup;
   public lengthValues = {
     heightMax: 200,
@@ -34,7 +37,9 @@ export class UsersCrudModalComponent {
   constructor(
     private readonly _dialogRef: MatDialogRef<LoginModalComponent>,
     private readonly _usersService: UsersService,
+    private readonly _translate: TranslateService,
   ) {
+    this.modalTitle = this._translate.instant(`USER.USER`);
     this.userForm = new FormGroup({
       username: new FormControl('', [
         Validators.required,
@@ -84,16 +89,19 @@ export class UsersCrudModalComponent {
   }
 
   save() {
-    // console.log(this.userForm.value);
-    // Object.keys(this.userForm.controls).forEach((element) => {
-    //   console.log(this.userForm.controls[element].errors);
-    // });
-    this._usersService.addUser(this._parseFormValues()).subscribe({
-      next: (res) => {
-        console.log(res);
-        this._dialogRef.close({ result: res });
-      },
-      error: (error) => console.error(error),
-    });
+    if (this.user) {
+    } else {
+      this._usersService.addUser(this._parseFormValues()).subscribe({
+        next: (res) => {
+          console.log(res);
+          this._dialogRef.close({ result: res });
+        },
+        error: (error) => console.error(error),
+      });
+    }
+  }
+
+  modalClose() {
+    this._dialogRef.close();
   }
 }

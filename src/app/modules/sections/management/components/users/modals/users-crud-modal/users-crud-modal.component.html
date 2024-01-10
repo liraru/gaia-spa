@@ -1,4 +1,11 @@
 <div class="container">
+  <h1>
+    @if(user) {
+    {{ 'FORM.EDIT_MODAL_TITLE' | translate : { value: user.username } }}
+    } @else {
+    {{ 'FORM.ADD_MODAL_TITLE' | translate : { field: modalTitle } }}
+    }
+  </h1>
   <form [formGroup]="userForm">
     <div class="row">
       <mat-form-field>
@@ -91,10 +98,15 @@
   </form>
 
   <div class="button-row">
-    <button mat-raised-button (click)="save()">
+    <button mat-raised-button (click)="modalClose()">
       {{ 'FORM.CANCEL' | translate }}
     </button>
-    <button mat-raised-button color="primary" (click)="save()">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="save()"
+      [disabled]="userForm.invalid"
+    >
       {{ 'FORM.SAVE' | translate }}
     </button>
   </div>
