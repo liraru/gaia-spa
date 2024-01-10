@@ -1,14 +1,16 @@
 {
   "APPLICATIONS": "Aplicaciones",
   "BIRTHDATE": "F.Nacimiento",
+  "EDIT": "Editar",
+  "FULLNAME": "Nombre",
   "HEIGHT": "Altura",
+  "LASTNAME": "Apellidos",
   "LOG_IN": "Iniciar sesión",
   "LOG_OUT": "Cerrar sesión",
   "NAME": "Nombre",
   "PASSWORD": "Contraseña",
   "PROFILE": "Perfil",
+  "REPEAT_PASSWORD": "Repetir contraseña",
   "USERNAME": "Nombre de usuario",
-  "USERS": "Usuarios",
-  "EDIT": "Editar",
-  "FULLNAME": "Nombre"
+  "USERS": "Usuarios"
 }

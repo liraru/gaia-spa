@@ -6,10 +6,36 @@
     </mat-form-field>
 
     <mat-form-field>
+      <mat-label>{{ 'NAME' | translate }}</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'LASTNAME' | translate }}</mat-label>
+      <input matInput formControlName="lastname" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'BITHDATE' | translate }}</mat-label>
+      <input matInput formControlName="birthdate" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'HEIGHT' | translate }}</mat-label>
+      <input matInput formControlName="height" />
+    </mat-form-field>
+
+    <mat-form-field>
       <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
       <input matInput formControlName="password" />
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'REPEAT_PASSWORD' | translate }}</mat-label>
+      <input matInput formControlName="controlPassword" />
+    </mat-form-field>
   </form>
+
   <div class="button-row">
     <button mat-raised-button color="primary" (click)="save()">
       {{ 'LOG_IN' | translate }}

@@ -1,4 +1,5 @@
 import { SECRETS } from 'private/secrets.constant';
+import * as CryptoJS from 'crypto-js';
 
 export class StringHelper {
   static parseDBDate(str: string) {

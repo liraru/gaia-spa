@@ -11,7 +11,7 @@ import { LoginService } from 'app/modules/layout/navbar/services/login.service';
 export class LoginModalComponent {
   constructor(
     private readonly _loginService: LoginService,
-    public dialogRef: MatDialogRef<LoginModalComponent>
+    private readonly _dialogRef: MatDialogRef<LoginModalComponent>
   ) {}
   public loginForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -26,7 +26,7 @@ export class LoginModalComponent {
           if (value?.accessToken?.length < 1) {
             alert(`No autorizado`);
           }
-          this.dialogRef.close({
+          this._dialogRef.close({
             isLogged: value?.accessToken.length > 0,
             username: value?.user.username
           });
