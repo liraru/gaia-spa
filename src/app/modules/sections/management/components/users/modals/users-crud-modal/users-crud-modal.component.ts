@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validator,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { REGEX } from 'app/constants/regex.constant';
 import { StringHelper } from 'app/helpers/string.helper';
@@ -23,39 +31,39 @@ export class UsersCrudModalComponent {
   };
 
   constructor(private readonly _dialogRef: MatDialogRef<LoginModalComponent>) {
-    this.userForm = new FormGroup(
-      {
-        username: new FormControl('', [
-          Validators.required,
-          Validators.maxLength(this.lengthValues.stringMaxLength),
-          Validators.minLength(this.lengthValues.stringMinLength),
-        ]),
-        name: new FormControl(''),
-        lastname: new FormControl(''),
-        birthdate: new FormControl('', [
-          Validators.required
-        ]),
-        height: new FormControl('', [
-          Validators.required,
-          Validators.max(this.lengthValues.heightMax),
-          Validators.min(this.lengthValues.heightMin),
-        ]),
-        password: new FormControl('', [Validators.required]),
-        controlPassword: new FormControl('', [Validators.required]),
-      },
-      this._checkPasswordValidator(),
-    );
+    this.userForm = new FormGroup({
+      username: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(this.lengthValues.stringMaxLength),
+        Validators.minLength(this.lengthValues.stringMinLength),
+      ]),
+      name: new FormControl(''),
+      lastname: new FormControl(''),
+      birthdate: new FormControl('', [Validators.required]),
+      height: new FormControl('', [
+        Validators.required,
+        Validators.max(this.lengthValues.heightMax),
+        Validators.min(this.lengthValues.heightMin),
+      ]),
+      password: new FormControl('', [Validators.required]),
+      controlPassword: new FormControl('', [
+        Validators.required,
+        this._checkPasswordValidator(),
+      ]),
+    });
 
     console.log(this.userForm);
   }
 
-  private _checkPasswordValidator(): Validators {
-    if (this.userForm) {
-      const pwdControl = this.userForm.controls[`password`];
-      const pwdControlMatch = this.userForm.controls[`controlPassword`];
-      return { notmatched: pwdControl.value !== pwdControlMatch.value ? true : false };
-    }
-    return { notmatched: false };
+  private _checkPasswordValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (this.userForm) {
+        return this.userForm.value.password !== control.value
+          ? { notmatched: true }
+          : null;
+      }
+      return null;
+    };
   }
 
   private _parseFormValues(): IUser {

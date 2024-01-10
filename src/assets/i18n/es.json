@@ -13,13 +13,14 @@
       "MAX_LENGTH": "El máximo de carácteres es {{ value }}",
       "MIN_LENGTH": "El mínimo de carácteres es {{ value }}",
       "MIN_VALUE": "El valor mínimo es {{ value }}",
-      "MAX_VALUE": "El valor máximo es {{ value }}"
+      "MAX_VALUE": "El valor máximo es {{ value }}",
+      "PASSWORD_MATCH": "Ambos campos de contraseña deben coincidir"
     }
   },
   "USER": {
     "BIRTHDATE": "F.Nacimiento",
     "FULLNAME": "Nombre",
-    "HEIGHT": "Altura",
+    "HEIGHT": "Altura (cm.)",
     "LASTNAME": "Apellidos",
     "NAME": "Nombre",
     "PASSWORD": "Contraseña",
