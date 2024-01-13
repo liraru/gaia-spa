@@ -86,4 +86,8 @@ export class UsersComponent implements AfterViewInit {
       data: { user: this._users.find((f) => (f.uuid = user.uuid)) },
     });
   }
+
+  deleteUser(user: IUser) {
+    
+  }
 }

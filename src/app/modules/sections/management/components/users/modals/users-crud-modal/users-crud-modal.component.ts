@@ -104,8 +104,13 @@ export class UsersCrudModalComponent {
   }
 
   save() {
-    if (this.onEdit) {
-      
+    if (this.onEdit && this._user) {
+      this._user.username = undefined;
+      this._user.password = undefined;
+      this._usersService.editUser(this._user).subscribe({
+        next: (res) => this._dialogRef.close({ result: this._user }),
+        error: (error) => console.error(error),
+      });
     } else {
       this._usersService.addUser(this._parseFormValues()).subscribe({
         next: (res) => this._dialogRef.close({ result: res }),

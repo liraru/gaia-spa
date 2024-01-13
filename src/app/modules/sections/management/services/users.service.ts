@@ -41,13 +41,17 @@ export class UsersService {
 
   public editUser(user: IUser) {
     user.password = undefined;
-    this._http.put(`${this._api}/${ENDPOINTS.USERS}`, user);
+    return this._http.put(`${this._api}/${ENDPOINTS.USERS}`, user);
   }
 
   public pwdUpdate(uuid: string, pwd: string) {
-    this._http.put(`${this._api}/${ENDPOINTS.USERS}`, {
+    return this._http.put(`${this._api}/${ENDPOINTS.USERS}`, {
       uuid: uuid,
       pwd: pwd,
     });
+  }
+
+  public deleteUser(uuid: string) {
+    return this._http.delete(`${this._api}/${ENDPOINTS.USERS}/uuid`);
   }
 }
