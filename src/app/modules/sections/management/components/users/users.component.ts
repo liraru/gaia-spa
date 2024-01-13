@@ -9,13 +9,19 @@ import { UsersService } from 'app/modules/sections/management/services/users.ser
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrl: './users.component.scss'
+  styleUrl: './users.component.scss',
 })
 export class UsersComponent implements AfterViewInit {
   private _users: IUser[] = [];
   public ICONS = ICONS;
   public sortedUsers: IUser[] = [];
-  public displayedColumns: string[] = ['username', 'fullname', 'birthdate', 'height', 'actions'];
+  public displayedColumns: string[] = [
+    'username',
+    'fullname',
+    'birthdate',
+    'height',
+    'actions',
+  ];
 
   constructor(private readonly _usersService: UsersService, public dialog: MatDialog) {}
 
@@ -28,7 +34,7 @@ export class UsersComponent implements AfterViewInit {
       next: (users: any) => {
         this.sortedUsers = this._users = users;
       },
-      error: (err) => console.error(err)
+      error: (err) => console.error(err),
     });
   }
 
@@ -76,5 +82,7 @@ export class UsersComponent implements AfterViewInit {
     });
   }
 
-  onRowClick(user: string) {}
+  editUser(uuid: string) {
+    console.log(this._users.find((f) => (f.uuid = uuid)));
+  }
 }

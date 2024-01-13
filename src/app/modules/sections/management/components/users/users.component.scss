@@ -52,8 +52,9 @@ button {
 .action-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
+  gap: 10px;
 
   * {
     font-size: 15px;
