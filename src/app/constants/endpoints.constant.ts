@@ -1,4 +1,5 @@
 export const ENDPOINTS = {
   LOGIN: `auth/login`,
-  USERS_LIST: `users`
-}
+  PASSWORD_UPDATE: `pwd-update`,
+  USERS: `users`,
+};

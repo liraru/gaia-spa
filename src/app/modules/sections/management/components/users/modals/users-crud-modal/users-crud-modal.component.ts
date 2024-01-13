@@ -54,32 +54,27 @@ export class UsersCrudModalComponent {
       ]),
       name: new FormControl(this.onEdit ? this._user?.name : undefined),
       lastname: new FormControl(this.onEdit ? this._user?.lastname : undefined),
-      birthdate: new FormControl(
-        this.onEdit
-          ? StringHelper.parseStringDate(this._user?.birthdate ?? '')
-          : undefined,
-        [Validators.required],
-      ),
+      birthdate: new FormControl(this.onEdit ? this._user?.birthdate : '', [Validators.required]),
       height: new FormControl(this.onEdit ? this._user?.height : undefined, [
         Validators.required,
         Validators.max(this.lengthValues.heightMax),
         Validators.min(this.lengthValues.heightMin),
       ]),
-      password: new FormControl(
-        undefined,
-        this.onEdit ? [Validators.required] : undefined,
-      ),
+      password: new FormControl(undefined, this.onEdit ? [Validators.required] : undefined),
       controlPassword: new FormControl(
         undefined,
         this.onEdit ? [Validators.required, this._checkPasswordValidator()] : undefined,
       ),
     });
 
+    console.log('ON LOAD CONFIG');
+    console.log('UNTOUCHED USER', this._user ?? 'NO HAY USER');
     console.log(this.userForm.value);
+    console.log('IS EDITING', this.onEdit);
   }
 
   private _checkIsEdit() {
-    if (this.data.user) {
+    if (this.data?.user) {
       this.onEdit = true;
       this._user = this.data.user;
       this.username = this._user?.username;
@@ -89,9 +84,7 @@ export class UsersCrudModalComponent {
   private _checkPasswordValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (this.userForm) {
-        return this.userForm.value.password !== control.value
-          ? { notmatched: true }
-          : null;
+        return this.userForm.value.password !== control.value ? { notmatched: true } : null;
       }
       return null;
     };
@@ -111,7 +104,8 @@ export class UsersCrudModalComponent {
   }
 
   save() {
-    if (this.data.user) {
+    if (this.onEdit) {
+      
     } else {
       this._usersService.addUser(this._parseFormValues()).subscribe({
         next: (res) => this._dialogRef.close({ result: res }),
