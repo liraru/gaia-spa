@@ -1,8 +1,5 @@
 import { Injector, NgModule } from '@angular/core';
-import {
-  BrowserModule,
-  provideClientHydration
-} from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { CommonModule } from '@angular/common';
 import {
@@ -10,7 +7,7 @@ import {
   HttpClient,
   provideHttpClient,
   withFetch,
-  withInterceptors
+  withInterceptors,
 } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -46,21 +43,21 @@ export function HttpLoaderFactory(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
     // * LAYOUT * //
     FooterModule,
     MenuModule,
     NavbarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     provideClientHydration(),
     NavigationStatusService,
-    provideHttpClient(withInterceptors([AuthInterceptor]))
+    provideHttpClient(withInterceptors([AuthInterceptor]), withFetch()),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(private _injector: Injector) {

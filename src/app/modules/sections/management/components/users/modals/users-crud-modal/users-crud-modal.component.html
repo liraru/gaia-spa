@@ -1,0 +1,113 @@
+<div class="container">
+  <h1>
+    @if(user) {
+    {{ 'FORM.EDIT_MODAL_TITLE' | translate : { value: user.username } }}
+    } @else {
+    {{ 'FORM.ADD_MODAL_TITLE' | translate : { field: modalTitle } }}
+    }
+  </h1>
+  <form [formGroup]="userForm">
+    <div class="row">
+      <mat-form-field>
+        <!-- USERNAME -->
+        <mat-label>{{ 'USER.USERNAME' | translate }}</mat-label>
+        <input matInput formControlName="username" />
+        @if (userForm.controls['username'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        } @else if (userForm.controls['username'].errors?.['minlength']) {
+        <mat-error>{{
+          'FORM.ERROR.MIN_LENGTH' | translate : { value: lengthValues.stringMinLength }
+        }}</mat-error>
+        }@else if (userForm.controls['username'].hasError('maxlength')) {
+        <mat-error>{{
+          'FORM.ERROR.MAX_LENGTH' | translate : { value: lengthValues.stringMaxLength }
+        }}</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- NAME -->
+      <mat-form-field>
+        <mat-label>{{ 'USER.NAME' | translate }}</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <!-- LAST NAME -->
+      <mat-form-field>
+        <mat-label>{{ 'USER.LASTNAME' | translate }}</mat-label>
+        <input matInput formControlName="lastname" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <!-- BIRTHDATE -->
+      <mat-form-field>
+        <mat-label>{{ 'USER.BIRTHDATE' | translate }}</mat-label>
+        <input matInput type="date" formControlName="birthdate" />
+        @if (userForm.controls['birthdate'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        } @else if (userForm.controls['birthdate'].errors?.['minlength']) {
+        <mat-error>{{
+          'FORM.ERROR.MIN_LENGTH' | translate : { value: lengthValues.stringMinLength }
+        }}</mat-error>
+        }@else if (userForm.controls['birthdate'].hasError('maxlength')) {
+        <mat-error>{{
+          'FORM.ERROR.MAX_LENGTH' | translate : { value: lengthValues.stringMaxLength }
+        }}</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- HEIGHT -->
+      <mat-form-field>
+        <mat-label>{{ 'USER.HEIGHT' | translate }}</mat-label>
+        <input matInput type="number" formControlName="height" />
+        @if (userForm.controls['height'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        } @else if (userForm.controls['height'].hasError('min')) {
+        <mat-error>{{
+          'FORM.ERROR.MIN_VALUE' | translate : { value: lengthValues.heightMin }
+        }}</mat-error>
+        } @else if (userForm.controls['height'].hasError('max')) {
+        <mat-error>{{
+          'FORM.ERROR.MAX_VALUE' | translate : { value: lengthValues.heightMax }
+        }}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <!-- PASSWORD -->
+      <mat-form-field>
+        <mat-label>{{ 'USER.PASSWORD' | translate }}</mat-label>
+        <input matInput formControlName="password" />
+        @if (userForm.controls['password'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- REPEAT PASSWORD -->
+      <mat-form-field>
+        <mat-label>{{ 'USER.REPEAT_PASSWORD' | translate }}</mat-label>
+        <input matInput formControlName="controlPassword" />
+        @if (userForm.controls['controlPassword'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        } @else if (userForm.controls['controlPassword'].hasError('notmatched')) {
+        <mat-error>{{ 'FORM.ERROR.PASSWORD_MATCH' | translate }}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="button-row">
+    <button mat-raised-button (click)="modalClose()">
+      {{ 'FORM.CANCEL' | translate }}
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="save()"
+      [disabled]="userForm.invalid"
+    >
+      {{ 'FORM.SAVE' | translate }}
+    </button>
+  </div>
+</div>

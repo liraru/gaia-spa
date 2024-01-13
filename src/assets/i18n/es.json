@@ -1,14 +1,33 @@
 {
   "APPLICATIONS": "Aplicaciones",
-  "BIRTHDATE": "F.Nacimiento",
-  "HEIGHT": "Altura",
   "LOG_IN": "Iniciar sesión",
   "LOG_OUT": "Cerrar sesión",
-  "NAME": "Nombre",
-  "PASSWORD": "Contraseña",
   "PROFILE": "Perfil",
-  "USERNAME": "Nombre de usuario",
   "USERS": "Usuarios",
-  "EDIT": "Editar",
-  "FULLNAME": "Nombre"
+  "FORM": {
+    "CANCEL": "Cancelar",
+    "EDIT": "Editar",
+    "SAVE": "Guardar",
+    "ADD_MODAL_TITLE": "Alta de {{ field }}",
+    "EDIT_MODAL_TITLE": "Editando {{ value }}",
+    "ERROR": {
+      "REQUIRED_FIELD": "Campo requerido",
+      "MAX_LENGTH": "El máximo de carácteres es {{ value }}",
+      "MIN_LENGTH": "El mínimo de carácteres es {{ value }}",
+      "MIN_VALUE": "El valor mínimo es {{ value }}",
+      "MAX_VALUE": "El valor máximo es {{ value }}",
+      "PASSWORD_MATCH": "Ambos campos de contraseña deben coincidir"
+    }
+  },
+  "USER": {
+    "USER": "Usuario",
+    "BIRTHDATE": "F.Nacimiento",
+    "FULLNAME": "Nombre",
+    "HEIGHT": "Altura (cm.)",
+    "LASTNAME": "Apellidos",
+    "NAME": "Nombre",
+    "PASSWORD": "Contraseña",
+    "REPEAT_PASSWORD": "Repetir contraseña",
+    "USERNAME": "Nombre de usuario"
+  }
 }

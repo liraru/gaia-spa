@@ -1,7 +1,9 @@
 import {
   faAddressCard,
+  faPenToSquare,
   faPlus,
   faRightFromBracket,
+  faTrash,
   faUser
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,5 +13,7 @@ export const ICONS = {
   ACCOUNT_CIRCLE: faUser,
   PROFILE: faAddressCard,
   LOG_OUT: faRightFromBracket,
-  ADD: faPlus
+  ADD: faPlus,
+  EDIT: faPenToSquare,
+  DELETE: faTrash
 };
