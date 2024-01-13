@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
@@ -21,8 +21,9 @@ import { UsersCrudModalComponent } from './components/users/modals/users-crud-mo
     ApplicationsComponent,
     ManagementComponent,
     UsersComponent,
-    UsersCrudModalComponent
+    UsersCrudModalComponent,
   ],
+  providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -36,7 +37,7 @@ import { UsersCrudModalComponent } from './components/users/modals/users-crud-mo
     MatInputModule,
     MatMenuModule,
     MatSortModule,
-    MatTableModule
-  ]
+    MatTableModule,
+  ],
 })
 export class ManagementModule {}

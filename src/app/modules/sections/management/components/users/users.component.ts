@@ -69,8 +69,6 @@ export class UsersComponent implements AfterViewInit {
           return 0;
       }
     });
-
-    console.log(this.sortedUsers);
   }
 
   addUser() {
@@ -82,7 +80,10 @@ export class UsersComponent implements AfterViewInit {
     });
   }
 
-  editUser(uuid: string) {
-    console.log(this._users.find((f) => (f.uuid = uuid)));
+  editUser(user: IUser) {
+    console.log(user);
+    const dialogRef = this.dialog.open(UsersCrudModalComponent, {
+      data: { user: this._users.find((f) => (f.uuid = user.uuid)) },
+    });
   }
 }

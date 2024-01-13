@@ -2,16 +2,15 @@ import { SECRETS } from 'private/secrets.constant';
 import * as CryptoJS from 'crypto-js';
 
 export class StringHelper {
-  static parseDBDate(str: string) {
-    return `${str.substring(8, 10)}/${str.substring(5, 7)}/${str.substring(0, 4)}`;
-  }
-
-  static parseDBStringDate(str: string) {
-    return `${str.substring(8, 10)}/${str.substring(5, 7)}/${str.substring(0, 4)}`;
-  }
-
-  static parseDateToDB(date: Date) {
-    return `${date.getFullYear()}-${date.getMonth()}/${date.getDate()}`;
+  static parseStringDate(str: string): string | undefined {
+    if (str.length > 0) {
+      if (str.indexOf(`/`) >= 0) {
+        return `${str.substring(6, 10)}-${str.substring(3, 5)}-${str.substring(0, 2)}`;
+      } else if (str.indexOf(`-`)) {
+        return `${str.substring(0, 2)}-${str.substring(3, 5)}-${str.substring(6, 10)}`;
+      }
+    }
+    return undefined;
   }
 
   static encrypt(password: string): string {
