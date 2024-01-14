@@ -60,17 +60,12 @@ export class UsersCrudModalComponent {
         Validators.max(this.lengthValues.heightMax),
         Validators.min(this.lengthValues.heightMin),
       ]),
-      password: new FormControl(undefined, this.onEdit ? [Validators.required] : undefined),
+      password: new FormControl(undefined, !this.onEdit ? [Validators.required] : undefined),
       controlPassword: new FormControl(
         undefined,
-        this.onEdit ? [Validators.required, this._checkPasswordValidator()] : undefined,
+        !this.onEdit ? [Validators.required, this._checkPasswordValidator()] : undefined,
       ),
     });
-
-    console.log('ON LOAD CONFIG');
-    console.log('UNTOUCHED USER', this._user ?? 'NO HAY USER');
-    console.log(this.userForm.value);
-    console.log('IS EDITING', this.onEdit);
   }
 
   private _checkIsEdit() {
@@ -99,14 +94,13 @@ export class UsersCrudModalComponent {
         ? this.userForm.value.birthdate
         : StringHelper.ParseStringDate(this.userForm.value.birthdate),
       height: Number(this.userForm.value.height),
-      password: StringHelper.Encrypt(this.userForm.value.password),
+      password: this.onEdit ? undefined : StringHelper.Encrypt(this.userForm.value.password),
     };
   }
 
   save() {
     if (this.onEdit && this._user) {
-      this._user.username = undefined;
-      this._user.password = undefined;
+      console.log('ON EDIT', this._parseFormValues());
       this._usersService.editUser(this._user).subscribe({
         next: (res) => this._dialogRef.close({ result: this._user }),
         error: (error) => console.error(error),
