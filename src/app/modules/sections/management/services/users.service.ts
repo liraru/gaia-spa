@@ -39,7 +39,6 @@ export class UsersService {
   }
 
   public editUser(user: IUser) {
-    user.password = undefined;
     user.uuid = undefined;
     user.applications = undefined;
     user.username = undefined;
