@@ -39,7 +39,7 @@ export class UsersCrudModalComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { user: IUser },
-    private readonly _dialogRef: MatDialogRef<LoginModalComponent>,
+    private readonly _dialogRef: MatDialogRef<UsersCrudModalComponent>,
     private readonly _usersService: UsersService,
     private readonly _translate: TranslateService,
   ) {

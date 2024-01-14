@@ -52,6 +52,6 @@ export class UsersService {
   }
 
   public deleteUser(uuid: string) {
-    return this._http.delete(`${this._api}/${ENDPOINTS.USERS}/uuid`);
+    return this._http.delete(`${this._api}/${ENDPOINTS.USERS}/${uuid}`);
   }
 }

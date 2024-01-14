@@ -22,7 +22,6 @@ import { NavbarModule } from 'app/modules/layout/navbar/navbar.module';
 import { NavigationStatusService } from 'app/services/navigation-status.service';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { AuthInterceptor } from 'app/services/interceptor.service';
-import { NotifierModalComponent } from './modules/@micro-modules/notifier-modal/notifier-modal.component';
 
 export let AppInjector: Injector;
 
@@ -31,7 +30,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, NotifierModalComponent],
+  declarations: [AppComponent],
   imports: [
     // * ↓ ANGULAR ↓ * //
     CommonModule,
