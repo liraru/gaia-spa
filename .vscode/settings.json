@@ -48,6 +48,7 @@
   "prettier.configPath": ".prettierrc",
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "files.exclude": {
+    "**/*.spec.ts": true,
     "dist": true,
     "e2e": true,
     ".idea": true,
