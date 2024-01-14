@@ -11,8 +11,11 @@ export class ArrayHelper {
   static Sort(sort: Sort, data: any[]) {
     if (sort?.active && sort?.direction && data) {
       return data.sort((a, b) => {
-        const isAsc = sort.direction === 'asc';
-        return this._sort(a[sort.active], b[sort.active], sort.direction === `asc`);
+        const dataA =
+          typeof a[sort.active] === `string` ? a[sort.active].trim().toLowerCase() : a[sort.active];
+        const dataB =
+          typeof b[sort.active] === `string` ? b[sort.active].trim().toLowerCase() : b[sort.active];
+        return this._sort(dataA, dataB, sort.direction === `asc`);
       });
     }
     return data;

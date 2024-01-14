@@ -62,11 +62,11 @@ export class UsersComponent implements AfterViewInit {
 
   editUser(user: IUser) {
     const dialogRef = this._dialog.open(UsersCrudModalComponent, {
-      data: { user: this._users.find((f) => (f.uuid = user.uuid)) },
+      data: { user: this._users.find((f) => f.uuid === user.uuid) },
     });
 
     dialogRef.afterClosed().subscribe({
-      next: (result: boolean) => {},
+      next: (result: boolean) => this._loadUsers(),
     });
   }
 

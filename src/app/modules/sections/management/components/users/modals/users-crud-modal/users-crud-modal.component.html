@@ -74,7 +74,8 @@
       </mat-form-field>
     </div>
 
-    <div class="row" [hidden]="onEdit">
+    @if(!onEdit) {
+    <div class="row">
       <!-- PASSWORD -->
       <mat-form-field>
         <mat-label>{{ 'USER.PASSWORD' | translate }}</mat-label>
@@ -95,18 +96,14 @@
         }
       </mat-form-field>
     </div>
+    }
   </form>
 
   <div class="button-row">
     <button mat-raised-button (click)="modalClose()">
       {{ 'FORM.CANCEL' | translate }}
     </button>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="save()"
-      [disabled]="userForm.invalid"
-    >
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="userForm.invalid">
       {{ 'FORM.SAVE' | translate }}
     </button>
   </div>

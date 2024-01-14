@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ENDPOINTS } from 'app/constants/endpoints.constant';
-import { StringHelper } from 'app/helpers/string.helper';
 import { IUser } from 'app/modules/sections/management/interfaces/user.interface';
 import { environment } from 'environments/environment';
-import { map } from 'rxjs';
+import { map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -39,9 +38,8 @@ export class UsersService {
     return this._http.post(`${this._api}/${ENDPOINTS.USERS}`, user);
   }
 
-  public editUser(user: IUser) {
-    user.password = undefined;
-    return this._http.put(`${this._api}/${ENDPOINTS.USERS}`, user);
+  public editUser(user: IUser, uuid: string) {
+    return this._http.put(`${this._api}/${ENDPOINTS.USERS}/${uuid}`, user);
   }
 
   public pwdUpdate(uuid: string, pwd: string) {
