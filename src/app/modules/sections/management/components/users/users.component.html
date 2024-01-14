@@ -10,8 +10,16 @@
   </button>
 </div>
 
-@if(sortedUsers.length > 0) {
-<table mat-table [dataSource]="sortedUsers" matSort (matSortChange)="sortData($event)">
+@if(sortedUsers.data.length > 0) {
+<table
+  mat-table
+  [dataSource]="sortedUsers"
+  matSort
+  matSortActive="username"
+  matSortDisableClear
+  matSortDirection="asc"
+  (matSortChange)="sortData($event)"
+>
   <ng-container matColumnDef="username">
     <th mat-header-cell mat-sort-header *matHeaderCellDef>
       {{ 'USER.USERNAME' | translate }}
@@ -41,7 +49,7 @@
   </ng-container>
 
   <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let row">
       <div class="action-buttons">
         <button mat-fab (click)="editUser(row)" color="secondary">

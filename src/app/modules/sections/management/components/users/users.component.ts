@@ -1,6 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import { DIALOG_BASE_CONFIG } from 'app/constants/dialog-config.constant';
 import { ICONS } from 'app/constants/icons.constant';
@@ -18,7 +19,7 @@ import { UsersService } from 'app/modules/sections/management/services/users.ser
 export class UsersComponent implements AfterViewInit {
   private _users: IUser[] = [];
   public ICONS = ICONS;
-  public sortedUsers: IUser[] = [];
+  public sortedUsers: MatTableDataSource<IUser> = new MatTableDataSource<IUser>([]);
   public displayedColumns: string[] = ['username', 'fullname', 'birthdate', 'height', 'actions'];
 
   constructor(
@@ -44,11 +45,10 @@ export class UsersComponent implements AfterViewInit {
   sortData(sort: Sort) {
     const data = this._users;
     if (!sort.active || sort.direction === '') {
-      this.sortedUsers = data;
+      this.sortedUsers.data = data;
       return;
     }
-
-    this.sortedUsers = ArrayHelper.sort(sort, this._users);
+    this.sortedUsers.data = ArrayHelper.Sort(sort, this._users);
     console.log('SORTED USER', this.sortedUsers);
   }
 

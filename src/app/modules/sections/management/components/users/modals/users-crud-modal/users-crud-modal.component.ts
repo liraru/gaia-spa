@@ -97,9 +97,9 @@ export class UsersCrudModalComponent {
       lastname: this.userForm.value.lastname,
       birthdate: REGEX.DB_DATE.test(this.userForm.value.birthdate)
         ? this.userForm.value.birthdate
-        : StringHelper.parseStringDate(this.userForm.value.birthdate),
+        : StringHelper.ParseStringDate(this.userForm.value.birthdate),
       height: Number(this.userForm.value.height),
-      password: StringHelper.encrypt(this.userForm.value.password),
+      password: StringHelper.Encrypt(this.userForm.value.password),
     };
   }
 

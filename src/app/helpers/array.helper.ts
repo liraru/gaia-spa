@@ -8,7 +8,7 @@ export class ArrayHelper {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
-  static sort(sort: Sort, data: any[]) {
+  static Sort(sort: Sort, data: any[]) {
     if (sort?.active && sort?.direction && data) {
       return data.sort((a, b) => {
         const isAsc = sort.direction === 'asc';

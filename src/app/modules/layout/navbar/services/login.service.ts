@@ -22,7 +22,7 @@ export class LoginService {
     return this._http
       .post(`${this._api}/${ENDPOINTS.LOGIN}`, {
         username: user,
-        password: StringHelper.encrypt(password)
+        password: StringHelper.Encrypt(password)
       })
       .pipe(
         tap((response: any) => {

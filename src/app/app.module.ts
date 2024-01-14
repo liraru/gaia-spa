@@ -3,11 +3,10 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { CommonModule } from '@angular/common';
 import {
-  HTTP_INTERCEPTORS,
   HttpClient,
   provideHttpClient,
   withFetch,
-  withInterceptors,
+  withInterceptors
 } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -19,9 +18,9 @@ import { LANG } from 'app/constants/languages.constant';
 import { FooterModule } from 'app/modules/layout/footer/footer.module';
 import { MenuModule } from 'app/modules/layout/menu/menu.module';
 import { NavbarModule } from 'app/modules/layout/navbar/navbar.module';
+import { AuthInterceptor } from 'app/services/interceptor.service';
 import { NavigationStatusService } from 'app/services/navigation-status.service';
 import { NgxWebstorageModule } from 'ngx-webstorage';
-import { AuthInterceptor } from 'app/services/interceptor.service';
 
 export let AppInjector: Injector;
 
