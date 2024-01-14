@@ -16,6 +16,7 @@ import { UsersComponent } from 'app/modules/sections/management/components/users
 import { ManagementRoutingModule } from 'app/modules/sections/management/management-routing.module';
 import { ApplicationsComponent } from './components/applications/applications.component';
 import { UsersCrudModalComponent } from './components/users/modals/users-crud-modal/users-crud-modal.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [ApplicationsComponent, ManagementComponent, UsersComponent, UsersCrudModalComponent],
@@ -35,6 +36,7 @@ import { UsersCrudModalComponent } from './components/users/modals/users-crud-mo
     MatMenuModule,
     MatSortModule,
     MatTableModule,
+    MatTooltipModule,
     // ↓ MICROMODULES ↓ //
     AcceptCancelModalModule,
   ],

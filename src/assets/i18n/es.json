@@ -5,7 +5,9 @@
   "PROFILE": "Perfil",
   "USERS": "Usuarios",
   "FORM": {
+    "ADD": "Añadir",
     "CANCEL": "Cancelar",
+    "DELETE": "Eliminar",
     "YES": "Sí",
     "NO": "No",
     "EDIT": "Editar",
