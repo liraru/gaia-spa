@@ -49,7 +49,6 @@ export class UsersComponent implements AfterViewInit {
       return;
     }
     this.sortedUsers.data = ArrayHelper.Sort(sort, this._users);
-    console.log('SORTED USER', this.sortedUsers);
   }
 
   addUser() {
