@@ -100,7 +100,6 @@ export class UsersCrudModalComponent {
 
   save() {
     if (this.onEdit && this._user) {
-      console.log('ON EDIT', this._parseFormValues());
       this._usersService.editUser(this._user).subscribe({
         next: (res) => this._dialogRef.close({ result: this._user }),
         error: (error) => console.error(error),
