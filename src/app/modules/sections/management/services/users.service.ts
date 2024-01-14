@@ -19,6 +19,8 @@ export class UsersService {
         const parsed: IUser[] = [];
         resp.forEach((user: any) => {
           parsed.push({
+            uuid: user.uuid,
+            username: user.username,
             name: user.name,
             lastname: user.lastname,
             fullname: `${user.name} ${user.lastname}`,
@@ -38,6 +40,9 @@ export class UsersService {
 
   public editUser(user: IUser) {
     user.password = undefined;
+    user.uuid = undefined;
+    user.applications = undefined;
+    user.username = undefined;
     return this._http.put(`${this._api}/${ENDPOINTS.USERS}/${user.uuid}`, user);
   }
 
