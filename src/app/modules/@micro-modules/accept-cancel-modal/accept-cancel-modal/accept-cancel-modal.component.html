@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content>
+  <p class="question" [innerHTML]="question | translate"></p>
+</div>
+<div mat-dialog-actions class="action-buttons-container">
+  <button mat-button mat-raised-button (click)="onActionClick(false)">
+    {{ 'FORM.NO' | translate }}
+  </button>
+  <button mat-button mat-raised-button color="primary" (click)="onActionClick(true)" cdkFocusInitial>
+    {{ 'FORM.YES' | translate }}
+  </button>
+</div>

@@ -44,10 +44,10 @@
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let row">
       <div class="action-buttons">
-        <button mat-fab (click)="editUser(row.uuid)" color="secondary">
+        <button mat-fab (click)="editUser(row)" color="secondary">
           <fa-icon [icon]="ICONS.EDIT"></fa-icon>
         </button>
-        <button mat-fab (click)="editUser(row.uuid)" color="secondary">
+        <button mat-fab (click)="deleteUser(row)" color="secondary">
           <fa-icon [icon]="ICONS.DELETE"></fa-icon>
         </button>
       </div>

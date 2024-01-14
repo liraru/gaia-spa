@@ -15,7 +15,7 @@ export class UsersService {
   constructor(private readonly _http: HttpClient) {}
 
   public getUsersList() {
-    return this._http.get(`${this._api}/${ENDPOINTS.USERS_LIST}`).pipe(
+    return this._http.get(`${this._api}/${ENDPOINTS.USERS}`).pipe(
       map((resp: any) => {
         const parsed: IUser[] = [];
         resp.forEach((user: any) => {
@@ -25,7 +25,7 @@ export class UsersService {
             name: user.name,
             lastname: user.lastname,
             fullname: `${user.name} ${user.lastname}`,
-            birthdate: StringHelper.parseDBDate(user.birthdate),
+            birthdate: user.birthdate,
             height: user.height,
             applications: user.applications,
           });
@@ -36,6 +36,22 @@ export class UsersService {
   }
 
   public addUser(user: IUser) {
-    return this._http.post(`${this._api}/${ENDPOINTS.USERS_LIST}`, user);
+    return this._http.post(`${this._api}/${ENDPOINTS.USERS}`, user);
+  }
+
+  public editUser(user: IUser) {
+    user.password = undefined;
+    return this._http.put(`${this._api}/${ENDPOINTS.USERS}`, user);
+  }
+
+  public pwdUpdate(uuid: string, pwd: string) {
+    return this._http.put(`${this._api}/${ENDPOINTS.USERS}`, {
+      uuid: uuid,
+      pwd: pwd,
+    });
+  }
+
+  public deleteUser(uuid: string) {
+    return this._http.delete(`${this._api}/${ENDPOINTS.USERS}/${uuid}`);
   }
 }

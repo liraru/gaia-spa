@@ -6,6 +6,8 @@
   "USERS": "Usuarios",
   "FORM": {
     "CANCEL": "Cancelar",
+    "YES": "Sí",
+    "NO": "No",
     "EDIT": "Editar",
     "SAVE": "Guardar",
     "ADD_MODAL_TITLE": "Alta de {{ field }}",
@@ -28,6 +30,8 @@
     "NAME": "Nombre",
     "PASSWORD": "Contraseña",
     "REPEAT_PASSWORD": "Repetir contraseña",
-    "USERNAME": "Nombre de usuario"
+    "USERNAME": "Nombre de usuario",
+    "DELETE_USER_TITLE": "Eliminar usuario.",
+    "DELETE_USER_SPECIFIC_QUESTION": "Se eliminará el usuario <b>{{ username }}</b> y toda la información vinculada. \n¿Desea continuar?"
   }
 }
