@@ -99,9 +99,15 @@ export class UsersCrudModalComponent {
   }
 
   save() {
-    if (this.onEdit && this._user) {
-      this._usersService.editUser(this._user).subscribe({
-        next: (res) => this._dialogRef.close({ result: this._user }),
+    if (this.onEdit) {
+      const user: IUser = {
+        name: this.userForm.value.name,
+        lastname: this.userForm.value.lastname,
+        birthdate: this.userForm.value.birthdate,
+        height: this.userForm.value.height,
+      };
+      this._usersService.editUser(user, this._user?.uuid ?? '').subscribe({
+        next: (res) => this._dialogRef.close({ result: res }),
         error: (error) => console.error(error),
       });
     } else {

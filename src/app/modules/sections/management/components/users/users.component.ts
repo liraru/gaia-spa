@@ -66,7 +66,7 @@ export class UsersComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe({
-      next: (result: boolean) => {},
+      next: (result: boolean) => this._loadUsers(),
     });
   }
 
