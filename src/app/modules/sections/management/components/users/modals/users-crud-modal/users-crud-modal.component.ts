@@ -1,5 +1,4 @@
-import { Dialog } from '@angular/cdk/dialog';
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -12,7 +11,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { REGEX } from 'app/constants/regex.constant';
 import { StringHelper } from 'app/helpers/string.helper';
-import { LoginModalComponent } from 'app/modules/layout/navbar/components/login-modal/login-modal.component';
 import { IUser } from 'app/modules/sections/management/interfaces/user.interface';
 import { UsersService } from 'app/modules/sections/management/services/users.service';
 
@@ -45,13 +43,15 @@ export class UsersCrudModalComponent {
   ) {
     this._checkIsEdit();
     this.modalTitle = this._translate.instant(`USER.USER`);
-    console.log(this.onEdit, this._user);
     this.userForm = new FormGroup({
-      username: new FormControl(this.onEdit ? this._user?.username : undefined, [
-        Validators.required,
-        Validators.maxLength(this.lengthValues.stringMaxLength),
-        Validators.minLength(this.lengthValues.stringMinLength),
-      ]),
+      username: new FormControl(
+        { value: this.onEdit ? this._user?.username : undefined, disabled: this.onEdit },
+        [
+          Validators.required,
+          Validators.maxLength(this.lengthValues.stringMaxLength),
+          Validators.minLength(this.lengthValues.stringMinLength),
+        ],
+      ),
       name: new FormControl(this.onEdit ? this._user?.name : undefined),
       lastname: new FormControl(this.onEdit ? this._user?.lastname : undefined),
       birthdate: new FormControl(this.onEdit ? this._user?.birthdate : '', [Validators.required]),
