@@ -42,6 +42,11 @@ export class UsersComponent implements AfterViewInit {
     });
   }
 
+  private _dataUpdated(users: IUser[]) {
+    this._users = users;
+    this.sortData({ active: `username`, direction: `asc` });
+  }
+
   sortData(sort: Sort) {
     const data = this._users;
     if (!sort.active || sort.direction === '') {
@@ -53,11 +58,12 @@ export class UsersComponent implements AfterViewInit {
 
   addUser() {
     const dialogRef = this._dialog.open(UsersCrudModalComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this._loadUsers();
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .subscribe({
+        next: (result: any) => this._dataUpdated(result.result),
+        error: (error) => console.error(error),
+      });
   }
 
   editUser(user: IUser) {
@@ -66,7 +72,7 @@ export class UsersComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe({
-      next: (result: boolean) => this._loadUsers(),
+      next: (result: { result: IUser[] }) => this._dataUpdated(result.result),
     });
   }
 
