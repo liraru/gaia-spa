@@ -17,6 +17,8 @@ import { ManagementRoutingModule } from 'app/modules/sections/management/managem
 import { ApplicationsComponent } from './components/applications/applications.component';
 import { UsersCrudModalComponent } from './components/users/modals/users-crud-modal/users-crud-modal.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [ApplicationsComponent, ManagementComponent, UsersComponent, UsersCrudModalComponent],
@@ -34,9 +36,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatExpansionModule,
     MatInputModule,
     MatMenuModule,
+    MatRadioModule,
     MatSortModule,
     MatTableModule,
     MatTooltipModule,
+    MatFormFieldModule,
     // ↓ MICROMODULES ↓ //
     AcceptCancelModalModule,
   ],

@@ -5,6 +5,7 @@
   "PROFILE": "Perfil",
   "USERS": "Usuarios",
   "FORM": {
+    "PICK_OPTION": "Elija una opción",
     "ADD": "Añadir",
     "CANCEL": "Cancelar",
     "DELETE": "Eliminar",
@@ -28,11 +29,14 @@
     "BIRTHDATE": "F.Nacimiento",
     "FULLNAME": "Nombre",
     "HEIGHT": "Altura (cm.)",
+    "GENRE": "Género",
     "LASTNAME": "Apellidos",
     "NAME": "Nombre",
     "PASSWORD": "Contraseña",
     "REPEAT_PASSWORD": "Repetir contraseña",
     "USERNAME": "Nombre de usuario",
+    "MALE": "Masculino",
+    "FEMALE": "Femenino",
     "DELETE_USER_TITLE": "Eliminar usuario.",
     "DELETE_USER_SPECIFIC_QUESTION": "Se eliminará el usuario <b>{{ username }}</b> y toda la información vinculada. \n¿Desea continuar?"
   }
