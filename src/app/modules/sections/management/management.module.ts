@@ -19,6 +19,7 @@ import { UsersCrudModalComponent } from './components/users/modals/users-crud-mo
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [ApplicationsComponent, ManagementComponent, UsersComponent, UsersCrudModalComponent],
@@ -34,13 +35,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatButtonModule,
     MatDialogModule,
     MatExpansionModule,
+    MatFormFieldModule,
     MatInputModule,
     MatMenuModule,
     MatRadioModule,
+    MatSelectModule,
     MatSortModule,
     MatTableModule,
     MatTooltipModule,
-    MatFormFieldModule,
     // ↓ MICROMODULES ↓ //
     AcceptCancelModalModule,
   ],

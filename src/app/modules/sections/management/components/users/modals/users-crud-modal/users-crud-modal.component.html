@@ -41,12 +41,13 @@
     <div class="row">
       <!-- GENRE -->
       <mat-form-field>
-        <mat-label>{{ 'FORM.PICK_OPTION' | translate }}</mat-label>
-        <mat-radio-group formControlName="genre">
-          <mat-radio-button value="M">{{ 'USER.MALE' | translate }}</mat-radio-button>
-          <mat-radio-button value="F">{{ 'USER.FEMALE' | translate }}</mat-radio-button>
-        </mat-radio-group>
+        <mat-label>{{ 'USER.GENRE' | translate }}</mat-label>
+        <mat-select>
+          <mat-option value="M">{{ 'USER.MALE' | translate }}</mat-option>
+          <mat-option value="F">{{ 'USER.FEMALE' | translate }}</mat-option>
+        </mat-select>
       </mat-form-field>
+
       <!-- BIRTHDATE -->
       <mat-form-field>
         <mat-label>{{ 'USER.BIRTHDATE' | translate }}</mat-label>
