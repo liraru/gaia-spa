@@ -25,6 +25,7 @@ export class UsersService {
             lastname: user.lastname,
             fullname: `${user.name} ${user.lastname}`,
             birthdate: user.birthdate,
+            genre: user.genre,
             height: user.height,
             applications: user.applications,
           });

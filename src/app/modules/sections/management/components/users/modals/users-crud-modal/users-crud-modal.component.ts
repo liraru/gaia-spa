@@ -55,6 +55,7 @@ export class UsersCrudModalComponent {
       name: new FormControl(this.onEdit ? this._user?.name : undefined),
       lastname: new FormControl(this.onEdit ? this._user?.lastname : undefined),
       birthdate: new FormControl(this.onEdit ? this._user?.birthdate : '', [Validators.required]),
+      genre: new FormControl(this.onEdit ? this._user?.genre : 'M', [Validators.required]),
       height: new FormControl(this.onEdit ? this._user?.height : undefined, [
         Validators.required,
         Validators.max(this.lengthValues.heightMax),
@@ -93,6 +94,7 @@ export class UsersCrudModalComponent {
       birthdate: REGEX.DB_DATE.test(this.userForm.value.birthdate)
         ? this.userForm.value.birthdate
         : StringHelper.ParseStringDate(this.userForm.value.birthdate),
+      genre: this.userForm.value.genre,
       height: Number(this.userForm.value.height),
       password: this.onEdit ? undefined : StringHelper.Encrypt(this.userForm.value.password),
     };
@@ -104,6 +106,7 @@ export class UsersCrudModalComponent {
         name: this.userForm.value.name,
         lastname: this.userForm.value.lastname,
         birthdate: this.userForm.value.birthdate,
+        genre: this.userForm.value.genre,
         height: this.userForm.value.height,
       };
       this._usersService.editUser(user, this._user?.uuid ?? '').subscribe({

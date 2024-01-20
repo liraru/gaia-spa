@@ -5,6 +5,7 @@ export interface IUser {
   lastname: string;
   fullname?: string;
   birthdate: string;
+  genre: 'M' | 'F';
   height: number;
   password?: string;
   applications?: string[];

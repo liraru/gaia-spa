@@ -39,6 +39,15 @@
     </div>
 
     <div class="row">
+      <!-- GENRE -->
+      <mat-form-field>
+        <mat-label>{{ 'USER.GENRE' | translate }}</mat-label>
+        <mat-select formControlName="genre">
+          <mat-option value="M">{{ 'USER.MALE' | translate }}</mat-option>
+          <mat-option value="F">{{ 'USER.FEMALE' | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <!-- BIRTHDATE -->
       <mat-form-field>
         <mat-label>{{ 'USER.BIRTHDATE' | translate }}</mat-label>
