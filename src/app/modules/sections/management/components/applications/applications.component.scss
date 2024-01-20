@@ -1,0 +1,78 @@
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+
+  tr {
+    &:hover {
+      font-weight: bold;
+    }
+  }
+
+  th {
+    height: 50px;
+  }
+
+  td {
+    height: 35px;
+    cursor: pointer;
+  }
+
+  th,
+  td {
+    padding-left: 15px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #303030;
+  }
+}
+
+button {
+  border-width: 0px;
+  border-radius: 100%;
+
+  &:hover {
+    background-color: #303030;
+    cursor: pointer;
+  }
+}
+
+.button-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.add-button {
+  width: 40px;
+  height: 40px;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+
+  * {
+    font-size: 15px;
+  }
+
+  button {
+    width: 30px;
+    height: 30px;
+
+    fa-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.table-icon {
+  padding-top: 5px;
+  width: 35px;
+  height: 35px;
+}
