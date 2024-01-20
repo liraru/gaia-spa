@@ -20,9 +20,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { ApplicationsModalComponent } from './components/applications/modals/applications-modal/applications-modal.component';
 
 @NgModule({
-  declarations: [ApplicationsComponent, ManagementComponent, UsersComponent, UsersCrudModalComponent],
+  declarations: [ApplicationsComponent, ManagementComponent, UsersComponent, UsersCrudModalComponent, ApplicationsModalComponent],
   providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   imports: [
     CommonModule,

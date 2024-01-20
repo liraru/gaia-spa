@@ -44,6 +44,6 @@
     "NAME": "Nombre",
     "CODE": "Código",
     "ICON": "Icono",
-    "USERS": "Usuarios"
+    "DESCRIPTION": "Descripción"
   }
 }
