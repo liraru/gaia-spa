@@ -56,7 +56,7 @@ export class ApplicationsModalComponent {
   private _parseFormValues(): IApplication {
     return {
       code: this.applicationForm.value.code,
-      key: this.applicationForm.value.key,
+      key: `${this.applicationForm.value.key}`,
       description: this.applicationForm.value.description,
       route: this.applicationForm.value.route,
       parentApplication: this.applicationForm.value.parent,

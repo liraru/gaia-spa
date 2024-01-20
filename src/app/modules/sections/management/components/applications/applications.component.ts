@@ -41,7 +41,7 @@ export class ApplicationsComponent implements AfterViewInit {
           this._applications.map((app: IApplication) => {
             return {
               uuid: app.uuid,
-              image: app.image,
+              image: `assets/images/${app.image}`,
               code: app.code,
               name: app.key,
               description: app.description ?? '',
@@ -55,8 +55,15 @@ export class ApplicationsComponent implements AfterViewInit {
   }
 
   onAdd() {
-    const dialogRef = this._dialog.open(ApplicationsModalComponent);
-    dialogRef.afterClosed().subscribe({ next: () => {}, error: (error) => console.error(error) });
+    const dialogRef = this._dialog.open(ApplicationsModalComponent, {
+      data: { list: this._applications },
+    });
+    dialogRef.afterClosed().subscribe({
+      next: () => {
+        this.getAll();
+      },
+      error: (error) => console.error(error),
+    });
   }
 
   edit(app: IApplication) {}

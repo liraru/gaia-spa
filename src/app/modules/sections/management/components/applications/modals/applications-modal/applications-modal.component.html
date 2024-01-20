@@ -39,9 +39,9 @@
     <div class="row">
       <!-- ROUTE -->
       <mat-form-field>
-        <mat-label>{{ 'APPLICATION.DESCRIPTION' | translate }}</mat-label>
-        <input matInput formControlName="description" />
-        @if (applicationForm.controls['description'].hasError('required')) {
+        <mat-label>{{ 'APPLICATION.ROUTE' | translate }}</mat-label>
+        <input matInput formControlName="route" />
+        @if (applicationForm.controls['route'].hasError('required')) {
         <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
         }
       </mat-form-field>
