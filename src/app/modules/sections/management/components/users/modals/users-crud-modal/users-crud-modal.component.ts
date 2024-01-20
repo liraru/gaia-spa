@@ -42,8 +42,20 @@ export class UsersCrudModalComponent {
     private readonly _translate: TranslateService,
   ) {
     this._checkIsEdit();
-    this.modalTitle = this._translate.instant(`USER.USER`);
-    this.userForm = new FormGroup({
+    this.userForm = this._buildForm();
+  }
+
+  private _checkIsEdit() {
+    if (this.data?.user) {
+      this.onEdit = true;
+      this._user = this.data.user;
+      this.username = this._user?.username;
+      this.modalTitle = this._translate.instant(`USER.USER`);
+    }
+  }
+
+  private _buildForm(): FormGroup {
+    return new FormGroup({
       username: new FormControl(
         { value: this.onEdit ? this._user?.username : undefined, disabled: this.onEdit },
         [
@@ -67,14 +79,6 @@ export class UsersCrudModalComponent {
         !this.onEdit ? [Validators.required, this._checkPasswordValidator()] : undefined,
       ),
     });
-  }
-
-  private _checkIsEdit() {
-    if (this.data?.user) {
-      this.onEdit = true;
-      this._user = this.data.user;
-      this.username = this._user?.username;
-    }
   }
 
   private _checkPasswordValidator(): ValidatorFn {

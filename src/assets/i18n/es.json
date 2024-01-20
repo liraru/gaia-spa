@@ -40,10 +40,13 @@
     "DELETE_USER_TITLE": "Eliminar usuario.",
     "DELETE_USER_SPECIFIC_QUESTION": "Se eliminará el usuario <b>{{ username }}</b> y toda la información vinculada. \n¿Desea continuar?"
   },
-  "APPLICATION" : {
+  "APPLICATION": {
+    "NEW": "Nueva aplicación",
     "NAME": "Nombre",
     "CODE": "Código",
     "ICON": "Icono",
-    "DESCRIPTION": "Descripción"
+    "DESCRIPTION": "Descripción",
+    "PARENT": "Aplicación padre",
+    "ROUTE": "Ruta menú"
   }
 }

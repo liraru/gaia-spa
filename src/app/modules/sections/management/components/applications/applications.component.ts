@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import { ICONS } from 'app/constants/icons.constant';
 import { ArrayHelper } from 'app/helpers/array.helper';
+import { ApplicationsModalComponent } from 'app/modules/sections/management/components/applications/modals/applications-modal/applications-modal.component';
 import { IApplication } from 'app/modules/sections/management/interfaces/applications.interface';
 import { ApplicationService } from 'app/modules/sections/management/services/application.service';
 
@@ -53,7 +54,10 @@ export class ApplicationsComponent implements AfterViewInit {
     });
   }
 
-  add() {}
+  onAdd() {
+    const dialogRef = this._dialog.open(ApplicationsModalComponent);
+    dialogRef.afterClosed().subscribe({ next: () => {}, error: (error) => console.error(error) });
+  }
 
   edit(app: IApplication) {}
 
