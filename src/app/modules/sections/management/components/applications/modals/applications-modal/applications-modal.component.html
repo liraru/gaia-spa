@@ -1,1 +1,79 @@
-<p>applications-modal works!</p>
+<div class="container">
+  <h1>
+    @if(onEdit) {
+    {{ 'FORM.EDIT_MODAL_TITLE' | translate : { value: applicationName } }}
+    } @else {
+    {{ 'FORM.ADD_MODAL_TITLE' | translate : { field: modalTitle } }}
+    }
+  </h1>
+  <form [formGroup]="applicationForm">
+    <div class="row">
+      <mat-form-field>
+        <!-- CODE -->
+        <mat-label>{{ 'APPLICATION.CODE' | translate }}</mat-label>
+        <input matInput formControlName="code" />
+        @if (applicationForm.controls['code'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- NAME -->
+      <mat-form-field>
+        <mat-label>{{ 'APPLICATION.NAME' | translate }}</mat-label>
+        <input matInput formControlName="key" />
+        @if (applicationForm.controls['key'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- DESCRIPTION -->
+      <mat-form-field>
+        <mat-label>{{ 'APPLICATION.DESCRIPTION' | translate }}</mat-label>
+        <input matInput formControlName="description" />
+        @if (applicationForm.controls['description'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <!-- ROUTE -->
+      <mat-form-field>
+        <mat-label>{{ 'APPLICATION.ROUTE' | translate }}</mat-label>
+        <input matInput formControlName="route" />
+        @if (applicationForm.controls['route'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- PARENT -->
+      <mat-form-field>
+        <mat-label>{{ 'APPLICATION.PARENT' | translate }}</mat-label>
+        <mat-select formControlName="parent">
+          <mat-option [value]="undefined"></mat-option>
+          @for (app of list; track $index) {
+          <mat-option [value]="app.key">{{ app.key }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- IMAGE -->
+      <mat-form-field>
+        <mat-label>{{ 'APPLICATION.ICON' | translate }}</mat-label>
+        <input matInput formControlName="image" />
+        @if (applicationForm.controls['image'].hasError('required')) {
+        <mat-error>{{ 'FORM.ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="button-row">
+    <button mat-raised-button (click)="onModalClose()">
+      {{ 'FORM.CANCEL' | translate }}
+    </button>
+    <button mat-raised-button color="primary" (click)="onSave()" [disabled]="applicationForm.invalid">
+      {{ 'FORM.SAVE' | translate }}
+    </button>
+  </div>
+</div>
