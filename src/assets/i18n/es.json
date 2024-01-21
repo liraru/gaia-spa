@@ -47,6 +47,8 @@
     "ICON": "Icono",
     "DESCRIPTION": "Descripción",
     "PARENT": "Aplicación padre",
-    "ROUTE": "Ruta menú"
+    "ROUTE": "Ruta menú",
+    "DELETE_TITLE": "Eliminar aplicación.",
+    "DELETE_SPECIFIC_QUESTION": "Se eliminará la aplicación <b>{{ name }}</b> y toda la información vinculada. \n¿Desea continuar?"
   }
 }

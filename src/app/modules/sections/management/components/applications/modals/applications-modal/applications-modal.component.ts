@@ -25,6 +25,7 @@ export class ApplicationsModalComponent {
     private readonly _applicationsService: ApplicationService,
     private readonly _translate: TranslateService,
   ) {
+    console.log(data);
     this._checkIsEdit();
     this.applicationForm = this._buildForm();
   }
@@ -36,7 +37,7 @@ export class ApplicationsModalComponent {
       this._application = this.data.application;
       this.applicationName = this._application.name;
     } else {
-      this.modalTitle = this._translate.instant(`APPLICATION.NEW`)
+      this.modalTitle = this._translate.instant(`APPLICATION.NEW`);
     }
   }
 
@@ -55,6 +56,7 @@ export class ApplicationsModalComponent {
 
   private _parseFormValues(): IApplication {
     return {
+      uuid: this.onEdit ? this.data.application.uuid : undefined,
       code: this.applicationForm.value.code,
       key: `${this.applicationForm.value.key}`,
       description: this.applicationForm.value.description,
