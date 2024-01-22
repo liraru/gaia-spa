@@ -13,80 +13,6 @@
 
 @if(sortedUsers.data.length > 0) {
 <table
-  hidden
-  mat-table
-  [dataSource]="sortedUsers"
-  matSort
-  matSortActive="username"
-  matSortDisableClear
-  matSortDirection="asc"
-  (matSortChange)="sortData($event)"
->
-  <ng-container matColumnDef="username">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef>
-      {{ 'USER.USERNAME' | translate }}
-    </th>
-    <td mat-cell *matCellDef="let el">{{ el.username }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="fullname">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef>
-      {{ 'USER.FULLNAME' | translate }}
-    </th>
-    <td mat-cell *matCellDef="let el">{{ el.fullname }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="birthdate">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef>
-      {{ 'USER.BIRTHDATE' | translate }}
-    </th>
-    <td mat-cell *matCellDef="let el">{{ el.birthdate }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="height">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef>
-      {{ 'USER.HEIGHT' | translate }}
-    </th>
-    <td mat-cell *matCellDef="let el">{{ el.height }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let row">
-      <div class="action-buttons">
-        <button
-          matTooltip="{{ 'FORM.APPLICATION' | translate }}"
-          mat-fab
-          (click)="onEdit(row)"
-          color="secondary"
-        >
-          <fa-icon [icon]="ICONS.EDIT"></fa-icon>
-        </button>
-        <button
-          matTooltip="{{ 'FORM.EDIT' | translate }}"
-          mat-fab
-          (click)="onEdit(row)"
-          color="secondary"
-        >
-          <fa-icon [icon]="ICONS.EDIT"></fa-icon>
-        </button>
-        <button
-          matTooltip="{{ 'FORM.DELETE' | translate }}"
-          mat-fab
-          (click)="deleteUser(row)"
-          color="secondary"
-        >
-          <fa-icon [icon]="ICONS.DELETE"></fa-icon>
-        </button>
-      </div>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
-
-<table
   mat-table
   multiTemplateDataRows
   [dataSource]="sortedUsers"
@@ -101,25 +27,42 @@
     <th mat-header-cell mat-sort-header *matHeaderCellDef>
       {{ 'USER.' + toUpperCase(column) | translate }}
     </th>
-    <td mat-cell *matCellDef="let el">{{ el[column] }}</td>
+    <td mat-cell *matCellDef="let el">
+      @if(column === 'birthdate') {
+        {{ el[column] | date : 'dd/MM/yyyy' }}
+      } @else {
+        {{ el[column] }}
+      }
+    </td>
   </ng-container>
   }
   <ng-container matColumnDef="expand">
     <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
-    <td mat-cell *matCellDef="let element">
-      <button
-        mat-icon-button
-        aria-label="expand row"
-        (click)="
-          expandedElement = expandedElement === element ? null : element; $event.stopPropagation()
-        "
-      >
-        @if (expandedElement === element) {
-        <fa-icon [icon]="ICONS.CHEVRON_OPENED"></fa-icon>
-        } @else {
-        <fa-icon [icon]="ICONS.CHEVRON_CLOSED"></fa-icon>
-        }
-      </button>
+    <td mat-cell *matCellDef="let element" class="actions-container">
+      <div class="action-buttons">
+        <button
+          matTooltip="{{ 'FORM.DELETE' | translate }}"
+          mat-fab
+          (click)="deleteUser(element)"
+          color="secondary"
+        >
+          <fa-icon [icon]="ICONS.DELETE"></fa-icon>
+        </button>
+        <button
+          mat-fab
+          color="secondary"
+          aria-label="expand row"
+          (click)="
+            expandedElement = expandedElement === element ? null : element; $event.stopPropagation()
+          "
+        >
+          @if (expandedElement === element) {
+          <fa-icon [icon]="ICONS.CHEVRON_OPENED"></fa-icon>
+          } @else {
+          <fa-icon [icon]="ICONS.CHEVRON_CLOSED"></fa-icon>
+          }
+        </button>
+      </div>
     </td>
   </ng-container>
   <!-- EXPANDED PANEL -->
@@ -130,7 +73,11 @@
         class="element-detail"
         [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
       >
-        <app-users-form [user]="element" (onSaveEmitter)="loadUsers()"></app-users-form>
+        <app-users-form
+          [user]="element"
+          [isTablePanel]="true"
+          (onSaveEmitter)="loadUsers()"
+        ></app-users-form>
       </div>
       }
     </td>

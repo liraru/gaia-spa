@@ -28,7 +28,7 @@ export class UsersComponent implements AfterViewInit {
   private _users: IUser[] = [];
   public ICONS = ICONS;
   public sortedUsers: MatTableDataSource<IUser> = new MatTableDataSource<IUser>([]);
-  public displayedColumns: string[] = ['username', 'fullname', 'birthdate', 'height', 'actions'];
+  public displayedColumns: string[] = ['username', 'fullname', 'birthdate', 'height'];
   public columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   public expandedElement?: IUser;
 

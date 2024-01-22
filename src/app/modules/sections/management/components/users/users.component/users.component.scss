@@ -82,3 +82,11 @@ button {
   justify-content: center;
   align-items: center;
 }
+
+.actions-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  height: 52px;
+}

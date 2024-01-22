@@ -29,12 +29,13 @@ import { UsersService } from 'app/modules/sections/management/services/users.ser
 })
 export class UsersFormComponent implements OnChanges {
   @Input() user?: IUser;
+  @Input() isTablePanel: boolean = false;
   @Output() onSaveEmitter = new EventEmitter<boolean>();
 
   public modalTitle: string = '';
   public userForm: FormGroup;
   public isOnEdit: boolean = false;
-  public isOnAdd: boolean = false;
+  public isOnAdd: boolean = true;
   public username?: string;
 
   public lengthValues = {
@@ -51,13 +52,25 @@ export class UsersFormComponent implements OnChanges {
     private readonly _usersService: UsersService,
     private readonly _translate: TranslateService,
   ) {
-    // this._checkInitialStatus();
     this.userForm = this._buildForm();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.user = changes['user'].currentValue;
+    this._init();
+  }
+
+  private _init() {
+    console.log(this.user);
+    if (this.isTablePanel) {
+      this.isOnAdd = false;
+      this.username = this.user?.username;
+      this.modalTitle = this._translate.instant(`USER.USER`);
+    } else {
+      this.isOnAdd = true;
+      console.log('isOnAdd', this.isOnAdd);
+    }
     this.userForm = this._buildForm();
-    this._checkInitialStatus();
   }
 
   private _changeFormAvaliableStatus(enabled: boolean) {
@@ -68,17 +81,6 @@ export class UsersFormComponent implements OnChanges {
         this.userForm.controls[f].disable();
       }
     });
-  }
-
-  private _checkInitialStatus() {
-    console.log(this.user);
-    if (this.user) {
-      this.username = this.user?.username;
-      this.modalTitle = this._translate.instant(`USER.USER`);
-    } else {
-      console.log(this.isOnAdd);
-      this.isOnAdd = true;
-    }
   }
 
   private _buildForm(): FormGroup {
@@ -151,7 +153,7 @@ export class UsersFormComponent implements OnChanges {
   onSave() {
     const user: IUser = this._parseFormValues();
     if (this.isOnAdd) {
-      this._usersService.addUser(this._parseFormValues()).subscribe({
+      this._usersService.addUser(user).subscribe({
         next: (res) => this._dialogRef.close({ result: res }),
         error: (error) => console.error(error),
       });
