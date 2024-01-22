@@ -1,7 +1,8 @@
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { AfterViewInit, Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import { DIALOG_BASE_CONFIG } from 'app/constants/dialog-config.constant';
 import { ICONS } from 'app/constants/icons.constant';
@@ -15,12 +16,21 @@ import { UsersService } from 'app/modules/sections/management/services/users.ser
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed,void', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class UsersComponent implements AfterViewInit {
   private _users: IUser[] = [];
   public ICONS = ICONS;
   public sortedUsers: MatTableDataSource<IUser> = new MatTableDataSource<IUser>([]);
   public displayedColumns: string[] = ['username', 'fullname', 'birthdate', 'height', 'actions'];
+  public columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
+  public expandedElement?: IUser;
 
   constructor(
     private readonly _usersService: UsersService,
@@ -56,17 +66,21 @@ export class UsersComponent implements AfterViewInit {
     this.sortedUsers.data = ArrayHelper.Sort(sort, this._users);
   }
 
-  addUser() {
-    const dialogRef = this._dialog.open(UsersCrudModalComponent);
-    dialogRef
-      .afterClosed()
-      .subscribe({
-        next: (result: any) => this._dataUpdated(result.result),
-        error: (error) => console.error(error),
-      });
+  toUpperCase(lowerCase: string): string {
+    return lowerCase.toUpperCase();
   }
 
-  editUser(user: IUser) {
+  onAdd() {
+    const dialogRef = this._dialog.open(UsersCrudModalComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (result: any) => this._dataUpdated(result.result),
+      error: (error) => console.error(error),
+    });
+  }
+
+  onAssign() {}
+
+  onEdit(user: IUser) {
     const dialogRef = this._dialog.open(UsersCrudModalComponent, {
       data: { user: this._users.find((f) => f.uuid === user.uuid) },
     });

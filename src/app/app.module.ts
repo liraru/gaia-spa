@@ -34,6 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     // * ↓ ANGULAR ↓ * //
     CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule,
     AppRoutingModule,
     NgxWebstorageModule.forRoot(),
@@ -49,7 +50,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     FooterModule,
     MenuModule,
     NavbarModule,
-    BrowserAnimationsModule,
   ],
   providers: [
     provideClientHydration(),

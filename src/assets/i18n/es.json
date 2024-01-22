@@ -25,6 +25,7 @@
     }
   },
   "USER": {
+    "ACTIONS": "Acciones",
     "USER": "Usuario",
     "BIRTHDATE": "F.Nacimiento",
     "FULLNAME": "Nombre",
