@@ -1,0 +1,100 @@
+<div class="button-row">
+  <button
+    matTooltip="{{ 'FORM.ADD' | translate }}"
+    class="add-button"
+    mat-fab
+    color="primary"
+    aria-label="Example icon button with a delete icon"
+    (click)="onAdd()"
+  >
+    <fa-icon [icon]="ICONS.ADD"></fa-icon>
+  </button>
+</div>
+
+@if(sortedUsers.data.length > 0) {
+<table
+  mat-table
+  multiTemplateDataRows
+  [dataSource]="sortedUsers"
+  matSort
+  matSortActive="username"
+  matSortDisableClear
+  matSortDirection="asc"
+  (matSortChange)="sortData($event)"
+>
+  @for (column of displayedColumns; track column) {
+  <ng-container matColumnDef="{{ column }}">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>
+      {{ 'USER.' + toUpperCase(column) | translate }}
+    </th>
+    <td mat-cell *matCellDef="let el">
+      @if(column === 'birthdate') {
+        {{ el[column] | date : 'dd/MM/yyyy' }}
+      } @else {
+        {{ el[column] }}
+      }
+    </td>
+  </ng-container>
+  }
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+    <td mat-cell *matCellDef="let element" class="actions-container">
+      <div class="action-buttons">
+        <button
+          matTooltip="{{ 'FORM.DELETE' | translate }}"
+          mat-fab
+          (click)="deleteUser(element)"
+          color="secondary"
+        >
+          <fa-icon [icon]="ICONS.DELETE"></fa-icon>
+        </button>
+        <button
+          mat-fab
+          color="secondary"
+          aria-label="expand row"
+          (click)="
+            expandedElement = expandedElement === element ? null : element; $event.stopPropagation()
+          "
+        >
+          @if (expandedElement === element) {
+          <fa-icon [icon]="ICONS.CHEVRON_OPENED"></fa-icon>
+          } @else {
+          <fa-icon [icon]="ICONS.CHEVRON_CLOSED"></fa-icon>
+          }
+        </button>
+      </div>
+    </td>
+  </ng-container>
+  <!-- EXPANDED PANEL -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+      @if (element === expandedElement) {
+      <div
+        class="element-detail"
+        [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+      >
+        <app-users-form
+          [user]="element"
+          [isTablePanel]="true"
+          (onSaveEmitter)="loadUsers()"
+        ></app-users-form>
+      </div>
+      }
+    </td>
+  </ng-container>
+
+  <!-- EXPANDED PANEL -->
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: columnsToDisplayWithExpand"
+    (click)="expandedElement = expandedElement === row ? null : row"
+  ></tr>
+  <tr
+    mat-row
+    class="detail-row"
+    [@detailExpand]="expandedElement === row ? 'expanded' : 'collapsed'"
+    *matRowDef="let row; columns: ['expandedDetail']"
+  ></tr>
+</table>
+}

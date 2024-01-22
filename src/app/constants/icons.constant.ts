@@ -1,10 +1,13 @@
 import {
   faAddressCard,
+  faChevronDown,
+  faChevronUp,
   faPenToSquare,
   faPlus,
   faRightFromBracket,
   faTrash,
-  faUser
+  faUser,
+  faWindowRestore,
 } from '@fortawesome/free-solid-svg-icons';
 
 const ROOT = `/src/assets/images/icons`;
@@ -15,5 +18,8 @@ export const ICONS = {
   LOG_OUT: faRightFromBracket,
   ADD: faPlus,
   EDIT: faPenToSquare,
-  DELETE: faTrash
+  DELETE: faTrash,
+  APPLICATIONS: faWindowRestore,
+  CHEVRON_OPENED: faChevronUp,
+  CHEVRON_CLOSED: faChevronDown,
 };
