@@ -39,10 +39,10 @@ export class UsersComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    this._loadUsers();
+    this.loadUsers();
   }
 
-  private _loadUsers() {
+  public loadUsers() {
     this._usersService.getUsersList().subscribe({
       next: (users: any) => {
         this._users = users;
@@ -107,7 +107,7 @@ export class UsersComponent implements AfterViewInit {
           this._usersService.deleteUser(user.uuid).subscribe({
             next: () => {
               alert(`usuario borrado`);
-              this._loadUsers();
+              this.loadUsers();
             },
           });
         }

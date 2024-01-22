@@ -107,10 +107,19 @@
   </form>
 
   <div class="button-row">
-    <button mat-raised-button (click)="onCancel()">
+    <button mat-raised-button color="primary" [hidden]="isOnAdd || isOnEdit" (click)="onEdit()">
+      {{ 'FORM.EDIT' | translate }}
+    </button>
+    <button mat-raised-button [hidden]="!isOnAdd && !isOnEdit" (click)="onCancel()">
       {{ 'FORM.CANCEL' | translate }}
     </button>
-    <button mat-raised-button color="primary" (click)="onSave()" [disabled]="userForm.invalid">
+    <button
+      mat-raised-button
+      [hidden]="!isOnAdd && !isOnEdit"
+      color="primary"
+      (click)="onSave()"
+      [disabled]="userForm.invalid"
+    >
       {{ 'FORM.SAVE' | translate }}
     </button>
   </div>

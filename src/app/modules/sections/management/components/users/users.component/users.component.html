@@ -130,8 +130,7 @@
         class="element-detail"
         [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
       >
-        {{ element | json }}
-        <app-users-form [user]="element"></app-users-form>
+        <app-users-form [user]="element" (onSaveEmitter)="loadUsers()"></app-users-form>
       </div>
       }
     </td>

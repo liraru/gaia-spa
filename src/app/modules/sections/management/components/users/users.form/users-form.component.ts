@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Optional, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Optional,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -19,7 +27,7 @@ import { UsersService } from 'app/modules/sections/management/services/users.ser
   templateUrl: './users-form.component.html',
   styleUrl: './users-form.component.scss',
 })
-export class UsersFormComponent {
+export class UsersFormComponent implements OnChanges {
   @Input() user?: IUser;
   @Output() onSaveEmitter = new EventEmitter<boolean>();
 
@@ -43,16 +51,32 @@ export class UsersFormComponent {
     private readonly _usersService: UsersService,
     private readonly _translate: TranslateService,
   ) {
-    this._checkIsEdit();
-    console.log(this.user);
+    // this._checkInitialStatus();
     this.userForm = this._buildForm();
   }
 
-  private _checkIsEdit() {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.userForm = this._buildForm();
+    this._checkInitialStatus();
+  }
+
+  private _changeFormAvaliableStatus(enabled: boolean) {
+    Object.keys(this.userForm.controls).forEach((f: string) => {
+      if (enabled) {
+        this.userForm.controls[f].enable();
+      } else {
+        this.userForm.controls[f].disable();
+      }
+    });
+  }
+
+  private _checkInitialStatus() {
+    console.log(this.user);
     if (this.user) {
       this.username = this.user?.username;
       this.modalTitle = this._translate.instant(`USER.USER`);
     } else {
+      console.log(this.isOnAdd);
       this.isOnAdd = true;
     }
   }
@@ -67,27 +91,21 @@ export class UsersFormComponent {
           Validators.minLength(this.lengthValues.stringMinLength),
         ],
       ),
-      name: new FormControl({
-        value: !this.isOnAdd ? this.user?.name : '',
-        disabled: !this.isOnAdd && !this.isOnEdit,
-      }),
+      name: new FormControl({ value: !this.isOnAdd ? this.user?.name : '', disabled: !this.isOnAdd }),
       lastname: new FormControl({
         value: !this.isOnAdd ? this.user?.lastname : '',
-        disabled: !this.isOnAdd && !this.isOnEdit,
+        disabled: !this.isOnAdd,
       }),
       birthdate: new FormControl(
-        { value: !this.isOnAdd ? this.user?.birthdate : '', disabled: !this.isOnAdd && !this.isOnEdit },
+        { value: !this.isOnAdd ? this.user?.birthdate : undefined, disabled: !this.isOnAdd },
         [Validators.required],
       ),
       genre: new FormControl(
-        { value: !this.isOnAdd ? this.user?.genre : 'M', disabled: !this.isOnAdd && !this.isOnEdit },
+        { value: !this.isOnAdd ? this.user?.genre : 'M', disabled: !this.isOnAdd },
         [Validators.required],
       ),
       height: new FormControl(
-        {
-          value: !this.isOnAdd ? this.user?.height : undefined,
-          disabled: !this.isOnAdd && !this.isOnEdit,
-        },
+        { value: !this.isOnAdd ? this.user?.height : undefined, disabled: !this.isOnAdd },
         [
           Validators.required,
           Validators.max(this.lengthValues.heightMax),
@@ -113,7 +131,7 @@ export class UsersFormComponent {
 
   private _parseFormValues(): IUser {
     return {
-      username: this.userForm.value.username,
+      username: this.isOnAdd ? this.userForm.value.username : undefined,
       name: this.userForm.value.name,
       lastname: this.userForm.value.lastname,
       birthdate: REGEX.DB_DATE.test(this.userForm.value.birthdate)
@@ -121,38 +139,40 @@ export class UsersFormComponent {
         : StringHelper.ParseStringDate(this.userForm.value.birthdate),
       genre: this.userForm.value.genre,
       height: Number(this.userForm.value.height),
-      password: this.isOnEdit ? undefined : StringHelper.Encrypt(this.userForm.value.password),
+      password: !this.isOnAdd ? undefined : StringHelper.Encrypt(this.userForm.value.password),
     };
   }
 
   onEdit() {
     this.isOnEdit = true;
+    this._changeFormAvaliableStatus(true);
   }
 
   onSave() {
-    const user: IUser = {
-      name: this.userForm.value.name,
-      lastname: this.userForm.value.lastname,
-      birthdate: this.userForm.value.birthdate,
-      genre: this.userForm.value.genre,
-      height: this.userForm.value.height,
-    };
-    this._usersService.editUser(user, this.user?.uuid ?? '').subscribe({
-      next: (res) => (this.isOnAdd ? this._dialogRef?.close(res) : this.onSaveEmitter.emit(true)),
-      error: (error) => {
-        console.error(error);
-        this.isOnAdd ? this._dialogRef?.close() : this.onSaveEmitter.emit(false);
-      },
-    });
+    const user: IUser = this._parseFormValues();
+    if (this.isOnAdd) {
+      this._usersService.addUser(this._parseFormValues()).subscribe({
+        next: (res) => this._dialogRef.close({ result: res }),
+        error: (error) => console.error(error),
+      });
+    } else if (this.isOnEdit) {
+      this._usersService.editUser(user, this.user?.uuid ?? '').subscribe({
+        next: () => this.onSaveEmitter.emit(true),
+        error: (error) => {
+          console.error(error);
+          this.isOnAdd ? this._dialogRef?.close() : this.onSaveEmitter.emit(false);
+        },
+      });
+    }
   }
 
   onCancel() {
     if (this.isOnAdd) {
-      console.log('isOnAdd');
       this._dialogRef?.close();
     } else if (this.isOnEdit) {
       this.isOnEdit = false;
-      this._buildForm();
+      this.userForm = this._buildForm();
+      this._changeFormAvaliableStatus(false);
     }
   }
 }
