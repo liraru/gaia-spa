@@ -8,7 +8,7 @@ import { DIALOG_BASE_CONFIG } from 'app/constants/dialog-config.constant';
 import { ICONS } from 'app/constants/icons.constant';
 import { ArrayHelper } from 'app/helpers/array.helper';
 import { AcceptCancelModalComponent } from 'app/modules/@micro-modules/accept-cancel-modal/accept-cancel-modal/accept-cancel-modal.component';
-import { UsersCrudModalComponent } from 'app/modules/sections/management/components/users/modals/users-crud-modal/users-crud-modal.component';
+import { UsersFormComponent } from 'app/modules/sections/management/components/users/users.form/users-form.component';
 import { IUser } from 'app/modules/sections/management/interfaces/user.interface';
 import { UsersService } from 'app/modules/sections/management/services/users.service';
 
@@ -71,7 +71,7 @@ export class UsersComponent implements AfterViewInit {
   }
 
   onAdd() {
-    const dialogRef = this._dialog.open(UsersCrudModalComponent);
+    const dialogRef = this._dialog.open(UsersFormComponent);
     dialogRef.afterClosed().subscribe({
       next: (result: any) => this._dataUpdated(result.result),
       error: (error) => console.error(error),
@@ -81,7 +81,7 @@ export class UsersComponent implements AfterViewInit {
   onAssign() {}
 
   onEdit(user: IUser) {
-    const dialogRef = this._dialog.open(UsersCrudModalComponent, {
+    const dialogRef = this._dialog.open(UsersFormComponent, {
       data: { user: this._users.find((f) => f.uuid === user.uuid) },
     });
 

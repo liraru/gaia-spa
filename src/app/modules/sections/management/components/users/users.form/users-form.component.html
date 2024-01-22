@@ -1,11 +1,9 @@
 <div class="container">
+  @if(isOnAdd) {
   <h1>
-    @if(onEdit) {
-    {{ 'FORM.EDIT_MODAL_TITLE' | translate : { value: username } }}
-    } @else {
     {{ 'FORM.ADD_MODAL_TITLE' | translate : { field: modalTitle } }}
-    }
   </h1>
+  }
   <form [formGroup]="userForm">
     <div class="row">
       <mat-form-field>
@@ -83,7 +81,7 @@
       </mat-form-field>
     </div>
 
-    @if(!onEdit) {
+    @if(isOnAdd) {
     <div class="row">
       <!-- PASSWORD -->
       <mat-form-field>
@@ -109,10 +107,10 @@
   </form>
 
   <div class="button-row">
-    <button mat-raised-button (click)="modalClose()">
+    <button mat-raised-button (click)="onCancel()">
       {{ 'FORM.CANCEL' | translate }}
     </button>
-    <button mat-raised-button color="primary" (click)="save()" [disabled]="userForm.invalid">
+    <button mat-raised-button color="primary" (click)="onSave()" [disabled]="userForm.invalid">
       {{ 'FORM.SAVE' | translate }}
     </button>
   </div>

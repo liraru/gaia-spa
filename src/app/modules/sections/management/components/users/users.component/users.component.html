@@ -125,14 +125,18 @@
   <!-- EXPANDED PANEL -->
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+      @if (element === expandedElement) {
       <div
-        class="example-element-detail"
+        class="element-detail"
         [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
       >
-        <h1>hola</h1>
+        {{ element | json }}
+        <app-users-form [user]="element"></app-users-form>
       </div>
+      }
     </td>
   </ng-container>
+
   <!-- EXPANDED PANEL -->
   <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
   <tr
@@ -140,6 +144,11 @@
     *matRowDef="let row; columns: columnsToDisplayWithExpand"
     (click)="expandedElement = expandedElement === row ? null : row"
   ></tr>
-  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']"></tr>
+  <tr
+    mat-row
+    class="detail-row"
+    [@detailExpand]="expandedElement === row ? 'expanded' : 'collapsed'"
+    *matRowDef="let row; columns: ['expandedDetail']"
+  ></tr>
 </table>
 }

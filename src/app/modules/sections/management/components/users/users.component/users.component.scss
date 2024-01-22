@@ -14,7 +14,6 @@ table {
   }
 
   td {
-    height: 35px;
     cursor: pointer;
   }
 
@@ -29,8 +28,14 @@ table {
 }
 
 button {
+  padding: 3px;
   border-width: 0px;
   border-radius: 100%;
+
+  fa-icon {
+    max-width: 15px;
+    max-height: 15px;
+  }
 
   &:hover {
     background-color: #303030;
@@ -69,4 +74,9 @@ button {
       height: 20px;
     }
   }
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
 }
