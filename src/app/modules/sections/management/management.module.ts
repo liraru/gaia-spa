@@ -22,10 +22,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AcceptCancelModalModule } from 'app/modules/@micro-modules/accept-cancel-modal/accept-cancel-modal.module';
 import { ManagementComponent } from 'app/modules/sections/management/components/management/management.component';
 import { ManagementRoutingModule } from 'app/modules/sections/management/management-routing.module';
-import { ApplicationsComponent } from './components/applications/applications.component';
-import { ApplicationsModalComponent } from './components/applications/modals/applications-modal/applications-modal.component';
-import { UsersFormComponent } from 'app/modules/sections/management/components/users/users.form/users-form.component';
-import { UsersComponent } from 'app/modules/sections/management/components/users/users.component/users.component';
+import { ApplicationsComponent } from './components/applications/list/applications.component';
+import { ApplicationsModalComponent } from './components/applications/applications-modal/applications-modal.component';
+import { UsersFormComponent } from 'app/modules/sections/management/components/users/users-form/users-form.component';
+import { UsersComponent } from 'app/modules/sections/management/components/users/users/users.component';
+import { LinkUserApplicationsComponent } from './components/users/link-user-applications/link-user-applications.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { UsersComponent } from 'app/modules/sections/management/components/users
     UsersComponent,
     UsersFormComponent,
     ApplicationsModalComponent,
+    LinkUserApplicationsComponent,
   ],
   providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   imports: [
@@ -55,6 +58,7 @@ import { UsersComponent } from 'app/modules/sections/management/components/users
     MatSortModule,
     MatTableModule,
     MatTooltipModule,
+    MatSlideToggleModule,
     // ↓ MICROMODULES ↓ //
     AcceptCancelModalModule,
   ],

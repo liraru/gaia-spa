@@ -1,0 +1,8 @@
+<p class="title">{{ 'APPLICATION.USER_ASSIGNMENT_TITLE' | translate }}</p>
+<div class="container">
+  @for (app of appList; track app) {
+  <mat-slide-toggle class="example-margin" color="primary" [checked]="true">
+    <span>{{ app.code | translate }}</span>
+  </mat-slide-toggle>
+  }
+</div>

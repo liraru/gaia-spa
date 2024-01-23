@@ -29,9 +29,9 @@
     </th>
     <td mat-cell *matCellDef="let el">
       @if(column === 'birthdate') {
-        {{ el[column] | date : 'dd/MM/yyyy' }}
+      {{ el[column] | date : 'dd/MM/yyyy' }}
       } @else {
-        {{ el[column] }}
+      {{ el[column] }}
       }
     </td>
   </ng-container>
@@ -76,8 +76,9 @@
         <app-users-form
           [user]="element"
           [isTablePanel]="true"
-          (onSaveEmitter)="loadUsers()"
+          (onSaveEmitter)="dataLoad()"
         ></app-users-form>
+        <app-link-user-applications></app-link-user-applications>
       </div>
       }
     </td>
