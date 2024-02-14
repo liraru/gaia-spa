@@ -2,7 +2,7 @@
 <div class="container">
   @for (app of appList; track app) {
   <mat-slide-toggle class="example-margin" color="primary" [checked]="true">
-    <span>{{ app.code | translate }}</span>
+    <span>{{ app.name | translate }}</span>
   </mat-slide-toggle>
   }
 </div>

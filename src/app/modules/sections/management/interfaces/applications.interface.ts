@@ -1,8 +1,8 @@
 
 export interface IApplication {
-  uuid?: string;
+  uuid: string;
   code: string;
-  key?: string;
+  key: string;
   description?: string;
   route?: string;
   parentApplication?: string;

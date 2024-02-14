@@ -42,8 +42,8 @@ export class ApplicationService {
     this._applicationsSubject.next(apps);
   }
 
-  getListByUser(user_uuid: string): Observable<IApplication[]> {
-    return this._http.get<IApplication[]>(`${this._api}/by-user/${user_uuid}`);
+  getListByUser(user_uuid: string): Observable<string[]> {
+    return this._http.get<string[]>(`${this._api}/by-user/${user_uuid}`);
   }
 
   getById(uuid: string): Observable<IApplication[]> {
@@ -55,7 +55,14 @@ export class ApplicationService {
   }
 
   edit(application: IApplication) {
-    return this._http.put(`${this._api}/${application.uuid}`, application);
+    return this._http.put(`${this._api}/${application.uuid}`, {
+      code: application.code,
+      key: application.key,
+      description: application.description,
+      route: application.route,
+      parentApplication: application.parentApplication,
+      image: application.image,
+    });
   }
 
   delete(uuid: string) {
