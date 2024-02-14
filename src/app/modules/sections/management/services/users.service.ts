@@ -55,10 +55,11 @@ export class UsersService {
   }
 
   public updateLinkedApplication(user: string, app: string, status: boolean): Observable<IUser> {
+    console.log(`updateLinkedApplication - ${user} - ${app} - ${status}`)
     if (status) {
-      return this._http.post<IUser>(`${this._api}/${user}/${ENDPOINTS.LINK_APPLICATION}/${app}`, {});
+      return this._http.post<IUser>(`${this._api}/users/${user}/${ENDPOINTS.LINK_APPLICATION}/${app}`, {});
     } else {
-      return this._http.delete<IUser>(`${this._api}/${user}/${ENDPOINTS.UNLINK_APPLICATION}/${app}`, {});
+      return this._http.delete<IUser>(`${this._api}/users/${user}/${ENDPOINTS.UNLINK_APPLICATION}/${app}`, {});
     }
   }
 }

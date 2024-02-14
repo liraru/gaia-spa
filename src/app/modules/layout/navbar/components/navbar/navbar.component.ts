@@ -60,7 +60,7 @@ export class NavbarComponent implements OnDestroy {
   }
 
   public openUserProfile() {
-    alert('open menu click');
+    console.log('open menu click');
   }
 
   logOut() {

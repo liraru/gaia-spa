@@ -24,7 +24,7 @@ export class LoginModalComponent {
       .subscribe({
         next: (value) => {
           if (value?.accessToken?.length < 1) {
-            alert(`No autorizado`);
+            console.log(`No autorizado`);
           }
           this._dialogRef.close({
             isLogged: value?.accessToken.length > 0,

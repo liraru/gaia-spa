@@ -78,9 +78,15 @@
                   "with": "src/environments/environment.dev.ts"
                 }
               ]
+            },
+            "local": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "local"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -90,6 +96,9 @@
             },
             "development": {
               "buildTarget": "gaia-spa:build:development"
+            },
+            "local": {
+              "buildTarget": "gaia-spa:build:local"
             }
           },
           "defaultConfiguration": "development"

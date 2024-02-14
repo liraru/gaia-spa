@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { AppInjector } from 'app/app.module';
 import { STORAGE_KEYS } from 'app/constants/storage-keys.constants';
 import { LoginService } from 'app/modules/layout/navbar/services/login.service';
+import { environment } from 'environments/environment';
 import { SessionStorageService } from 'ngx-webstorage';
 import { catchError, throwError } from 'rxjs';
 
@@ -19,7 +20,7 @@ export const AuthInterceptor: HttpInterceptorFn = (
   const _loginService = AppInjector.get(LoginService);
   const _router = AppInjector.get(Router);
   const token = _session.retrieve(STORAGE_KEYS.TOKEN);
-  console.log('TOKEN', token);
+  console.log(environment.api, 'TOKEN', token);
 
   const counter: number = 0;
   const request = req.clone({

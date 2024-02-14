@@ -78,7 +78,7 @@
           [isTablePanel]="true"
           (onSaveEmitter)="dataLoad()"
         ></app-users-form>
-        <app-link-user-applications></app-link-user-applications>
+        <app-link-user-applications [user]="element.uuid"></app-link-user-applications>
       </div>
       }
     </td>

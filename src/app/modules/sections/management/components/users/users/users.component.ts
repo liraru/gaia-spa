@@ -106,7 +106,7 @@ export class UsersComponent implements AfterViewInit {
         if (result && user.uuid) {
           this._usersService.deleteUser(user.uuid).subscribe({
             next: () => {
-              alert(`usuario borrado`);
+              console.log(`usuario borrado`);
               this.dataLoad();
             },
           });
