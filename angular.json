@@ -79,6 +79,18 @@
                 }
               ]
             },
+            "chibiko": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.chibiko.ts"
+                }
+              ]
+            },
             "local": {
               "optimization": false,
               "extractLicenses": false,
@@ -96,6 +108,9 @@
             },
             "development": {
               "buildTarget": "gaia-spa:build:development"
+            },
+            "chibiko": {
+              "buildTarget": "gaia-spa:build:chibiko"
             },
             "local": {
               "buildTarget": "gaia-spa:build:local"
