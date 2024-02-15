@@ -7,10 +7,9 @@ import { DIALOG_BASE_CONFIG } from 'app/constants/dialog-config.constant';
 import { ICONS } from 'app/constants/icons.constant';
 import { ArrayHelper } from 'app/helpers/array.helper';
 import { AcceptCancelModalComponent } from 'app/modules/@micro-modules/accept-cancel-modal/accept-cancel-modal/accept-cancel-modal.component';
-import { ApplicationsModalComponent } from 'app/modules/sections/management/components/applications/modals/applications-modal/applications-modal.component';
+import { ApplicationsModalComponent } from 'app/modules/sections/management/components/applications/applications-modal/applications-modal.component';
 import { IApplication } from 'app/modules/sections/management/interfaces/applications.interface';
 import { ApplicationService } from 'app/modules/sections/management/services/application.service';
-import { application } from 'express';
 
 @Component({
   selector: 'app-applications',
@@ -101,7 +100,7 @@ export class ApplicationsComponent implements AfterViewInit {
         if (result && app.uuid) {
           this._applicationService.delete(app.uuid).subscribe({
             next: () => {
-              alert(`aplicación eliminada`);
+              console.log(`aplicación eliminada`);
               this._getAll();
             },
           });

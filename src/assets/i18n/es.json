@@ -50,6 +50,7 @@
     "PARENT": "Aplicación padre",
     "ROUTE": "Ruta menú",
     "DELETE_TITLE": "Eliminar aplicación.",
-    "DELETE_SPECIFIC_QUESTION": "Se eliminará la aplicación <b>{{ name }}</b> y toda la información vinculada. \n¿Desea continuar?"
+    "DELETE_SPECIFIC_QUESTION": "Se eliminará la aplicación <b>{{ name }}</b> y toda la información vinculada. \n¿Desea continuar?",
+    "USER_ASSIGNMENT_TITLE": "Este usuario está autorizado en las siguientes aplicaciones:"
   }
 }

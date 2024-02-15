@@ -79,6 +79,7 @@ button {
 .element-detail {
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -89,4 +90,8 @@ button {
   justify-content: flex-end;
   align-items: center;
   height: 52px;
+}
+
+app-users-form {
+  height: 240px;
 }

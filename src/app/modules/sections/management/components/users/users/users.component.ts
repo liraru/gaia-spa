@@ -1,5 +1,5 @@
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { AfterViewInit, Component } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,7 +8,7 @@ import { DIALOG_BASE_CONFIG } from 'app/constants/dialog-config.constant';
 import { ICONS } from 'app/constants/icons.constant';
 import { ArrayHelper } from 'app/helpers/array.helper';
 import { AcceptCancelModalComponent } from 'app/modules/@micro-modules/accept-cancel-modal/accept-cancel-modal/accept-cancel-modal.component';
-import { UsersFormComponent } from 'app/modules/sections/management/components/users/users.form/users-form.component';
+import { UsersFormComponent } from 'app/modules/sections/management/components/users/users-form/users-form.component';
 import { IUser } from 'app/modules/sections/management/interfaces/user.interface';
 import { UsersService } from 'app/modules/sections/management/services/users.service';
 
@@ -33,16 +33,16 @@ export class UsersComponent implements AfterViewInit {
   public expandedElement?: IUser;
 
   constructor(
-    private readonly _usersService: UsersService,
     private readonly _dialog: MatDialog,
     private readonly _translate: TranslateService,
+    private readonly _usersService: UsersService,
   ) {}
 
   ngAfterViewInit(): void {
-    this.loadUsers();
+    this.dataLoad();
   }
 
-  public loadUsers() {
+  public dataLoad() {
     this._usersService.getUsersList().subscribe({
       next: (users: any) => {
         this._users = users;
@@ -106,8 +106,8 @@ export class UsersComponent implements AfterViewInit {
         if (result && user.uuid) {
           this._usersService.deleteUser(user.uuid).subscribe({
             next: () => {
-              alert(`usuario borrado`);
-              this.loadUsers();
+              console.log(`usuario borrado`);
+              this.dataLoad();
             },
           });
         }

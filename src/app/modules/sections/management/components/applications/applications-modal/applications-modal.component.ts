@@ -56,7 +56,7 @@ export class ApplicationsModalComponent {
 
   private _parseFormValues(): IApplication {
     return {
-      uuid: this.onEdit ? this.data.application.uuid : undefined,
+      uuid: this.onEdit ? this.data.application.uuid : ``,
       code: this.applicationForm.value.code,
       key: `${this.applicationForm.value.key}`,
       description: this.applicationForm.value.description,

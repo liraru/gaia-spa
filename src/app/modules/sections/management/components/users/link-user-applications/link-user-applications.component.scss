@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  padding: 25px;
+  width: 684px;
+}
+
+.title {
+  padding-left: 25px;
+}
+
+mat-slide-toggle {
+  span {
+    padding-left: 10px;
+  }
+}

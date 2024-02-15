@@ -9,11 +9,12 @@ mat-error {
 
 .container {
   display: flex;
+  padding-top: 20px;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: flex-start;
   min-height: 250px;
-  padding: 15px 25px;
+  padding: 25px;
 }
 
 form {
